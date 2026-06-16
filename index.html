@@ -17,7 +17,15 @@ display:none;
 z-index:9999;
 box-shadow:0 4px 15px rgba(0,0,0,0.3);
 }
+  <h2 style="
+text-align:center;
+margin-bottom:15px;
+color:white;
+">
+🔍 Find Your Custom Shoe
+</h2>
 <style>
+
 
 *{
 margin:0;
@@ -354,8 +362,23 @@ Shop Now - $70
 </h2>
 <div class="product">
 <input
+<input
 type="text"
 id="searchBar"
+placeholder="🔍 Search Customs..."
+onkeyup="searchProducts()"
+style="
+width:100%;
+padding:18px 20px;
+margin-bottom:25px;
+border-radius:15px;
+border:2px solid #7a3cff;
+background:#111;
+color:white;
+font-size:16px;
+outline:none;
+box-shadow:0 0 15px rgba(122,60,255,.4);
+">
 placeholder="🔍 Search shoes..."
 onkeyup="searchProducts()"
 style="

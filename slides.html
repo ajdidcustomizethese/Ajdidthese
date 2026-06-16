@@ -148,8 +148,73 @@ Add To Cart
 
 <h3 id="cartTotal">Total: $0</h3>
 </div>
-  <script>
+<button class="buy" onclick="checkout()">
+Checkout
+</button>
+  <div id="checkoutModal"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.8);
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
 
+<div style="
+background:#151515;
+padding:25px;
+border-radius:15px;
+width:90%;
+max-width:500px;
+">
+
+<h2>Checkout</h2>
+
+<input id="customerName"
+placeholder="Full Name"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="customerEmail"
+placeholder="Email"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="customerSize"
+placeholder="Slide Size"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<button class="buy">
+Submit Order
+</button>
+
+<button class="buy"
+onclick="closeCheckout()">
+Close
+</button>
+
+</div>
+
+</div>
+<script>
+function checkout(){
+
+document.getElementById(
+"checkoutModal"
+).style.display = "flex";
+
+}
+
+function closeCheckout(){
+
+document.getElementById(
+"checkoutModal"
+).style.display = "none";
+
+}
 let cart = [];
 let total = 0;
 

@@ -2,8 +2,34 @@
 <html>
 <head>
 <title>Slides | AJDidThese</title>
+.cart{
+background:#151515;
+border:1px solid #333;
+border-radius:15px;
+padding:20px;
+margin-top:30px;
+}
 
+.cart h2{
+margin-bottom:15px;
+}
+
+.cart ul{
+list-style:none;
+padding:0;
+}
+
+.cart li{
+padding:10px 0;
+border-bottom:1px solid #333;
+}
+
+#cartTotal{
+margin-top:15px;
+color:#95ef63;
+}
 <style>
+
 
 body{
 background:#0a0a0a;
@@ -64,7 +90,10 @@ margin-top:15px;
 <h3>Tan Ja3 Slides 🤎🩴</h3>
 <p class="old">$70</p>
 <p class="price">$50</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Tan Ja3 Slides',50)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -72,7 +101,10 @@ margin-top:15px;
 <h3>White Ja3 Slides 🤍🩴</h3>
 <p class="old">$70</p>
 <p class="price">$50</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('White Ja3 Slides',50)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -80,7 +112,10 @@ margin-top:15px;
 <h3>Blue Ja3 Slides 💙🩴</h3>
 <p class="old">$70</p>
 <p class="price">$50</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Blue Ja3 Slides',50)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -88,7 +123,10 @@ margin-top:15px;
 <h3>Pink Ja3 Slides 🩷🩴</h3>
 <p class="old">$70</p>
 <p class="price">$50</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Pink Ja3 Slides',50)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -96,9 +134,58 @@ margin-top:15px;
 <h3>Blue Calm Nike Slides 🌊🩴</h3>
 <p class="old">$70</p>
 <p class="price">$50</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Blue Calm Nike Slides',50)">
+Add To Cart
+</button>
 </div>
 
 </div>
+  <div id="cart" class="cart">
+<h2>🛒 Shopping Cart (<span id="cartCount">0</span>)</h2>
+
+<ul id="cartItems"></ul>
+
+<h3 id="cartTotal">Total: $0</h3>
+</div>
+  <script>
+
+let cart = [];
+let total = 0;
+
+function addToCart(name, price){
+
+cart.push({name,price});
+
+total += price;
+
+renderCart();
+
+}
+
+function renderCart(){
+
+const list =
+document.getElementById("cartItems");
+
+list.innerHTML = "";
+
+cart.forEach(item => {
+
+list.innerHTML += `
+<li>${item.name} - $${item.price}</li>
+`;
+
+});
+
+document.getElementById("cartCount").innerHTML =
+cart.length;
+
+document.getElementById("cartTotal").innerHTML =
+"Total: $" + total;
+
+}
+
+</script>
 </body>
 </html>

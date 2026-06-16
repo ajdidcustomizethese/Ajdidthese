@@ -2,7 +2,32 @@
 <html>
 <head>
 <title>JA Cleats | AJDidThese</title>
+.cart{
+background:#151515;
+border:1px solid #333;
+border-radius:15px;
+padding:20px;
+margin-top:30px;
+}
 
+.cart h2{
+margin-bottom:15px;
+}
+
+.cart ul{
+list-style:none;
+padding:0;
+}
+
+.cart li{
+padding:10px 0;
+border-bottom:1px solid #333;
+}
+
+#cartTotal{
+margin-top:15px;
+color:#95ef63;
+}
 <style>
 
 body{
@@ -77,7 +102,51 @@ cursor:pointer;
 </style>
 
 </head>
+<script>
 
+let cart = [];
+let total = 0;
+
+function addToCart(name, price){
+
+cart.push({name,price});
+
+total += price;
+
+renderCart();
+
+}
+
+function renderCart(){
+
+const list =
+document.getElementById("cartItems");
+
+list.innerHTML = "";
+
+cart.forEach(item => {
+
+list.innerHTML += `
+<li>${item.name} - $${item.price}</li>
+`;
+
+});
+
+document.getElementById("cartCount").innerHTML =
+cart.length;
+
+document.getElementById("cartTotal").innerHTML =
+"Total: $" + total;
+
+}
+
+function checkout(){
+
+alert("Checkout coming next!");
+
+}
+
+</script>
 <body>
 
 <nav class="navbar">
@@ -95,7 +164,10 @@ cursor:pointer;
 <h3>Lunar New Year Cleats 🧧⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Lunar New Year Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -103,7 +175,10 @@ cursor:pointer;
 <h3>Ja Scratch Cleats 🐾⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Ja Scratch Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -111,7 +186,10 @@ cursor:pointer;
 <h3>Poison Dart Cleats 🐸⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Poison Dart Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -119,7 +197,10 @@ cursor:pointer;
 <h3>Mink Brown Cleats 🤎⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Mink Brown Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -127,7 +208,10 @@ cursor:pointer;
 <h3>Light Show Cleats ✨⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Light Show Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -135,7 +219,10 @@ cursor:pointer;
 <h3>Max Volume Cleats 🔊⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Max Volume Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -143,7 +230,10 @@ cursor:pointer;
 <h3>Van Courver Cleats 🌲⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Van Courver Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -151,7 +241,10 @@ cursor:pointer;
 <h3>NY vs NY Cleats 🗽⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('NY vs NY Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 <div class="product">
@@ -159,11 +252,25 @@ cursor:pointer;
 <h3>Day Break Cleats 🌅⚽</h3>
 <p class="old">$120</p>
 <p class="price">$80</p>
-<button class="buy">Add To Cart</button>
+<button class="buy"
+onclick="addToCart('Day Break Cleats',80)">
+Add To Cart
+</button>
 </div>
 
 </div>
 </div>
+<div id="cart" class="cart">
+<h2>🛒 Shopping Cart (<span id="cartCount">0</span>)</h2>
 
+<ul id="cartItems"></ul>
+
+<h3 id="cartTotal">Total: $0</h3>
+
+<button class="buy" onclick="checkout()">
+Checkout
+</button>
+
+</div>
 </body>
 </html>

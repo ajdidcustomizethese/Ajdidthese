@@ -4,7 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AJDidThese Anime Store</title>
-
+.toast{
+position:fixed;
+top:20px;
+right:20px;
+background:#95ef63;
+color:black;
+padding:15px 25px;
+border-radius:12px;
+font-weight:bold;
+display:none;
+z-index:9999;
+box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
 <style>
 
 *{
@@ -252,6 +264,9 @@ color:#888;
 </head>
 
 <body>
+  <div id="toast" class="toast">
+🛒 Added to Cart
+</div>
 <nav class="navbar">
 <a href="#naruto">Naruto</a>
 <a href="#onepiece">One Piece</a>
@@ -1062,6 +1077,16 @@ cart.push({name,price});
 total += price;
 
 renderCart();
+
+const toast =
+document.getElementById("toast");
+
+toast.style.display = "block";
+
+setTimeout(() => {
+toast.style.display = "none";
+}, 2000);
+}
 }
 
 function renderCart(){

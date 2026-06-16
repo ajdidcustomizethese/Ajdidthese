@@ -336,7 +336,86 @@ Close
 </div>
 
 </div>
+<script>
 
+function checkout(){
+document.getElementById("checkoutModal").style.display = "flex";
+}
+
+function closeCheckout(){
+document.getElementById("checkoutModal").style.display = "none";
+}
+let cart = [];
+let total = 0;
+
+function addToCart(name, price){
+
+cart.push({name,price});
+total += price;
+
+const list =
+document.getElementById("cartItems");
+
+list.innerHTML += `
+<li>${name} - $${price}</li>
+`;
+
+document.getElementById("cartCount").innerHTML =
+cart.length;
+
+document.getElementById("cartTotal").innerHTML =
+"Total: $" + total;
+
+}
+<div id="checkoutModal"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.8);
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+
+<div style="
+background:#151515;
+padding:25px;
+border-radius:15px;
+width:90%;
+max-width:500px;
+">
+
+<h2>⚽ JA Cleats Checkout</h2>
+
+<input id="customerName"
+placeholder="Full Name"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="customerEmail"
+placeholder="Email"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="customerSize"
+placeholder="Cleat Size"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<button class="buy">
+Submit Order
+</button>
+
+<button class="buy"
+onclick="closeCheckout()">
+Close
+</button>
+
+</div>
+
+</div>
+</script>
 </body>
 </html>
 </body>

@@ -303,7 +303,35 @@ text-align:center;
 padding:40px;
 color:#888;
 }
+.menu-btn{
+display:none;
+background:#00d26a;
+color:black;
+font-weight:bold;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+margin:10px auto;
+cursor:pointer;
+}
 
+@media (max-width:768px){
+
+.menu-btn{
+display:block;
+}
+
+.navbar{
+display:none;
+flex-direction:column;
+align-items:center;
+}
+
+.navbar.show{
+display:flex;
+}
+
+}
 </style>
 </head>
 
@@ -1713,6 +1741,9 @@ closeModal();
 alert("Failed to submit order.");
 
 }
+}
+function toggleMenu(){
+document.querySelector(".navbar").classList.toggle("show");
 }
 </script>
 <footer style="

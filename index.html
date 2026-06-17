@@ -97,6 +97,22 @@ min-width:220px;
 max-width:220px;
 }
 .naruto-scroll{
+.collection-scroll{
+display:flex;
+gap:20px;
+overflow-x:auto;
+padding:20px 0;
+scroll-behavior:smooth;
+}
+
+.collection-scroll::-webkit-scrollbar{
+height:8px;
+}
+
+.collection-scroll::-webkit-scrollbar-thumb{
+background:#00d26a;
+border-radius:20px;
+}  
 display:flex;
 gap:20px;
 overflow-x:auto;
@@ -766,7 +782,7 @@ Add To Cart
 🍄 Mario Collection
 </h2>
 
-<div class="products">
+<div class="collection-scroll">
 
 <div class="product">
 

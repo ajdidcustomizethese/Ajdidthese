@@ -576,7 +576,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Itachi JA 4s</h3>
 
@@ -615,7 +615,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 <h3>Sasuke Lightning Pack</h3>
 
 <p class="old">$100</p>
@@ -641,7 +641,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Kakashi Copy Ninja JA 3s</h3>
 
@@ -671,7 +671,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Naruto Hokage Bundle</h3>
 
@@ -705,7 +705,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Luffy Pirate Pack</h3>
 
@@ -734,7 +734,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 <h3>Zoro Swordsman Bundle</h3>
 
 <p class="old">$100</p>
@@ -775,7 +775,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Princess Peach JA 3s 💗🍑</h3>
 
@@ -802,7 +802,6 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
 ">
 
 <h3>Yoshi JA 3s 💚</h3>
@@ -830,7 +829,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 <h3>Munchy Plant JA 3s 🌱🌿</h3>
 
 <p class="old">$100</p>
@@ -862,7 +861,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Gojo Infinity Bundle</h3>
 
@@ -891,7 +890,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Itachi Susano JA 3s</h3>
 
@@ -920,7 +919,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 <h3>Lightning Flash</h3>
 
 <p class="old">$100</p>
@@ -947,7 +946,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Akaza ❄️</h3>
 
@@ -974,7 +973,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Ice 🧊</h3>
 
@@ -1001,7 +1000,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>White Ice ❄️</h3>
 
@@ -1028,7 +1027,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 <span class="badge">🔥 BEST SELLER</span>
 <h3>Black Ice 🖤❄️</h3>
 
@@ -1054,7 +1053,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 <h3>Let Me Ja</h3>
 
 <p class="old">$100</p>
@@ -1081,7 +1080,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 
 <h3>Espada 6# Ja 3s ⚔️</h3>
 
@@ -1138,7 +1137,7 @@ background:white;
 border-radius:12px;
 padding:10px;
 margin-bottom:15px;
-"
+">
 <span class="badge">⚡ LIMITED</span>
 <h3>Skull Ja 3s 💀🔥</h3>
 
@@ -1421,302 +1420,6 @@ ${orderText}
 
 💰 Total:
 $${total}`
-};
-
-try{
-
-await fetch("https://discord.com/api/webhooks/1514718583001714800/s5ngxaG0QcJG0HijXtUkIf6rVpqHNLq066_JgXymQBDcRkt7CzPTh1AyprueqcX15AnB",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify(payload)
-});
-
-alert(
-"Thank you for your order!\n\n" +
-"Order Number: #" + orderNumber +
-"\n\nOnce payment is verified, your order will be processed."
-);
-
-cart = [];
-total = 0;
-renderCart();
-
-closeModal();
-
-}catch(error){
-
-alert("Failed to submit order.");
-
-}
-}
-</script>
-<h2>
-🛒 Shopping Cart
-(<span id="cartCount">0</span>)
-</h2>
-
-<ul id="cartItems"></ul>
-
-<h3 id="cartTotal">Total: $0</h3>
-
-<button class="checkout" onclick="checkout()">
-Checkout
-</button>
-</div>
-
-</div>
-
-<div id="paymentModal" class="modal">
-<div class="modal-content">
-
-<p>Scan to pay using Cash App or Venmo.</p>
-
-<h3>Cash App</h3>
-<img src="IMG_2364.jpeg" alt="Cash App QR">
-
-<p>
-If the Cash App QR doesn't work:
-<br>
-<strong>$alterts</strong>
-</p>
-
-<hr>
-
-<h3>Venmo</h3>
-<img src="venmo.jpg" alt="Venmo QR">
-
-<p>
-If the Venmo QR doesn't work:
-<br>
-<strong>@maybeajdiddoit</strong>
-</p>
-<h3 id="checkoutTotal"></h3>
-<h3>Shipping Information</h3>
-
-<input type="text" id="customerFirst"
-placeholder="First Name"
-style="width:100%;padding:10px;margin:5px 0;">
-
-<input type="text" id="customerLast"
-placeholder="Last Name"
-style="width:100%;padding:10px;margin:5px 0;">
-
-<input type="text" id="customerAddress"
-placeholder="Street Address"
-style="width:100%;padding:10px;margin:5px 0;">
-
-<input type="text" id="customerCity"
-placeholder="City"
-style="width:100%;padding:10px;margin:5px 0;">
-
-<input type="text" id="customerState"
-placeholder="State"
-style="width:100%;padding:10px;margin:5px 0;">
-
-<input type="text" id="customerZip"
-placeholder="ZIP Code"
-  
-style="width:100%;padding:10px;margin:5px 0;">
-<input type="email" id="customerEmail"
-placeholder="Email Address"
-style="width:100%;padding:10px;margin:5px 0;">
-
-<input type="tel" id="customerPhone"
-placeholder="Phone Number"
-style="width:100%;padding:10px;margin:5px 0;">
-<input type="text" id="customerSize"
-placeholder="Shoe Size"
-style="width:100%;padding:10px;margin:5px 0;">
-<input type="text"
-id="customerPayment"
-placeholder="Cash App $username or Venmo @username used for payment"
-style="width:100%;padding:10px;margin:5px 0;">
-<button class="checkout"
-onclick="sendOrder()">
-Submit Order
-</button>
-<button class="close" onclick="closeModal()">
-Close
-</button>
-</div>
-</div>
-
-<footer style="text-align:center;padding:40px;">
-<p>© 2026 AJDidThese</p>
-
-<p>
-<a href="contact.html">Contact</a> |
-<a href="shipping.html">Shipping</a> |
-<a href="returns.html">Returns</a> |
-<a href="about.html">About Us</a>
-</p>
-
-<p>
-<a href="https://instagram.com/aj.customkicks" target="_blank">
-📸 Instagram
-</a>
-|
-<a href="https://tiktok.com/@mashhoroni" target="_blank">
-🎵 TikTok
-</a>
-</p>
-</footer>
-
-});
-
-}
-<script>
-
-let cart = [];
-let total = 0;
-
-function addToCart(name, price){
-
-cart.push({name,price});
-
-total += price;
-
-renderCart();
-
-const toast =
-document.getElementById("toast");
-
-toast.style.display = "block";
-
-setTimeout(() => {
-toast.style.display = "none";
-}, 2000);
-}
-}
-
-function renderCart(){
-
-const list =
-document.getElementById("cartItems");
-
-list.innerHTML = "";
-
-cart.forEach((item,index)=>{
-
-list.innerHTML += `
-<li>
-${item.name} - $${item.price}
-<button class="remove"
-onclick="removeItem(${index})">
-Remove
-</button>
-</li>
-`;
-
-});
-document.getElementById("cartCount").innerHTML =
-cart.length;
-document.getElementById("cartTotal")
-.innerHTML =
-"Total: $" + total;
-}
-
-function removeItem(index){
-
-total -= cart[index].price;
-
-cart.splice(index,1);
-
-renderCart();
-}
-
-function checkout(){
-
-if(cart.length===0){
-alert("Your cart is empty.");
-return;
-}
-
-document.getElementById("checkoutTotal").innerHTML =
-"Amount Due: $" + total;
-
-document.getElementById("paymentModal").style.display = "flex";
-}
-
-function closeModal(){
-document.getElementById("paymentModal")
-.style.display="none";
-}
-let timeLeft = 128 * 60 * 60;
-
-function updateTimer() {
-  const hours = Math.floor(timeLeft / 3600);
-  const minutes = Math.floor((timeLeft % 3600) / 60);
-  const seconds = timeLeft % 60;
-
-  document.getElementById("sale-timer").innerHTML =
-    `🔥 ${hours}H ${String(minutes).padStart(2,'0')}M ${String(seconds).padStart(2,'0')}S BEFORE 30% OFF DISCOUNT ENDS 🔥`;
-
-  if (timeLeft > 0) {
-    timeLeft--;
-  }
-}
-
-updateTimer();
-setInterval(updateTimer, 1000);
-window.onclick=function(event){
-
-const modal =
-document.getElementById("paymentModal");
-
-if(event.target===modal){
-modal.style.display="none";
-}
-}
-async function sendOrder(){
-let orderNumber =
-Math.floor(Math.random() * 1001) + 2000;
-let orderText = "";
-
-cart.forEach(item=>{
-orderText += `${item.name} - $${item.price}\n`;
-});
-
-const payload = {
-content:
-`🔥 NEW AJDidThese ORDER 🔥
-🧾 Order Number:
-#${orderNumber}
-👤 Name:
-${document.getElementById("customerFirst").value}
-${document.getElementById("customerLast").value}
-
-📧 Email:
-${document.getElementById("customerEmail").value}
-
-📱 Phone:
-${document.getElementById("customerPhone").value}
-
-📦 Address:
-${document.getElementById("customerAddress").value}
-
-🏙️ City:
-${document.getElementById("customerCity").value}
-
-🗺️ State:
-${document.getElementById("customerState").value}
-
-📮 ZIP:
-${document.getElementById("customerZip").value}
-
-👟 Shoe Size:
-${document.getElementById("customerSize").value}
-
-💸 Payment Verification:
-${document.getElementById("customerPayment").value}
-
-🛒 Order:
-${orderText}
-
-💰 Total:
-$${total}
 };
 
 try{

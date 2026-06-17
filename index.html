@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AJDidThese Anime Store</title>
-  <style>
+<style>
 .toast{
 position:fixed;
 top:20px;
@@ -31,7 +31,7 @@ padding:6px 8px;
 }
 
 }
-<style>
+</style>
 
 
 *{
@@ -1274,20 +1274,18 @@ let total = 0;
 
 function addToCart(name, price){
 
+alert("running");
+
 cart.push({name, price});
+
+alert("pushed");
 
 total += price;
 
 renderCart();
 
-const toast =
-document.getElementById("toast");
+alert("rendered");
 
-toast.style.display = "block";
-
-setTimeout(() => {
-toast.style.display = "none";
-}, 2000);
 }
 function renderCart(){
 

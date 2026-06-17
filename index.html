@@ -586,7 +586,7 @@ margin-bottom:15px;
 
 <p class="discount">Save $30</p>
 
-<button onclick="alert('works')">Add To Cart</button>
+<button class="buy"
 onclick="addToCart('Itachi JA 4s',70)">
 Add To Cart
 </button>
@@ -1270,17 +1270,27 @@ Close
 
 <script>
 
-<script>
-
 let cart = [];
 let total = 0;
 
 function addToCart(name, price){
-    alert(name + " added");
-}
+
+cart.push({name, price});
+
 total += price;
 
 renderCart();
+
+const toast =
+document.getElementById("toast");
+
+toast.style.display = "block";
+
+setTimeout(() => {
+toast.style.display = "none";
+}, 2000);
+
+}
 
 const toast =
 document.getElementById("toast");

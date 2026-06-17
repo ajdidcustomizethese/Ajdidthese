@@ -128,9 +128,17 @@ let cart=[];
 let total=0;
 
 function addToCart(name,price){
-cart.push({name,price});
-total+=price;
-renderCart();
+    cart.push({name,price});
+    total+=price;
+    renderCart();
+
+    const toast = document.getElementById("toast");
+    toast.textContent = name + " added to cart!";
+    toast.style.display = "block";
+
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 2000);
 }
 
 function renderCart(){
@@ -151,5 +159,19 @@ function closeCheckout(){
 document.getElementById('checkoutModal').style.display='none';
 }
 </script>
+<div id="toast" style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#95ef63;
+color:black;
+padding:12px 20px;
+border-radius:10px;
+font-weight:bold;
+display:none;
+z-index:9999;
+">
+Added to Cart!
+</div>
 </body>
 </html>

@@ -96,12 +96,27 @@ position:relative;
 min-width:220px;
 max-width:220px;
 }
-.products{
+.naruto-scroll{
 display:flex;
-overflow-x:auto;
 gap:20px;
-padding:20px;
+overflow-x:auto;
+padding:20px 0;
 scroll-behavior:smooth;
+}
+
+.naruto-scroll::-webkit-scrollbar{
+height:8px;
+}
+
+.naruto-scroll::-webkit-scrollbar-thumb{
+background:#00d26a;
+border-radius:20px;
+}    
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+margin-top:30px;
 }
 .product:hover{
 transform:translateY(-10px);
@@ -519,7 +534,8 @@ margin-bottom:20px;
 ">
 🔥 LIMITED NARUTO DROP 🔥
 </div>
-<div class="products"> 
+
+<div class="naruto-scroll">
 <input
 type="text"
 id="searchBar"
@@ -664,11 +680,14 @@ Add To Cart
 
 </div>
 </div>
+
+</div>
+
 <h2 id="onepiece" class="section-title">
 🏴‍☠️ One Piece Collection
 </h2>
 
-<div class="products">
+<div class="collection-scroll">
 <div class="product">
 
 <img src="luffy.jpg"

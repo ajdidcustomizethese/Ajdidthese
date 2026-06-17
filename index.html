@@ -92,17 +92,15 @@ box-shadow:0 5px 20px rgba(0,0,0,.1);
 transition:.3s;
 overflow:hidden;
 position:relative;
+flex:0 0 300px;
 }
-.product{
-background:white;
-border-radius:18px;
+.products{  
+display:flex;
+overflow-x:auto;
+gap:20px;
 padding:20px;
-text-align:center;
-box-shadow:0 4px 15px rgba(0,0,0,0.08);
-transition:all 0.3s ease;
-overflow:hidden;
+scroll-behavior:smooth;
 }
-
 .product:hover{
 transform:translateY(-10px);
 box-shadow:0 15px 40px rgba(0,210,106,.35);

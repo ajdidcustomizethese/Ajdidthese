@@ -1274,17 +1274,20 @@ let total = 0;
 
 function addToCart(name, price){
 
-alert("running");
-
 cart.push({name, price});
-
-alert("pushed");
 
 total += price;
 
 renderCart();
 
-alert("rendered");
+const toast =
+document.getElementById("toast");
+
+toast.style.display = "block";
+
+setTimeout(() => {
+toast.style.display = "none";
+}, 2000);
 
 }
 function renderCart(){

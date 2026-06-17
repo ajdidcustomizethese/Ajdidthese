@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JA Cleats | AJDidThese</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#0a0a0a;color:white}
+.navbar{background:#111;padding:15px;text-align:center}
+.navbar a{color:white;text-decoration:none;margin:0 12px;font-weight:bold}
+h1{text-align:center;padding:25px}
+.products{max-width:1400px;margin:auto;padding:25px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:25px}
+.product{background:#151515;border-radius:18px;padding:15px;text-align:center}
+.product img{width:100%;height:220px;object-fit:contain;background:#111;border-radius:12px}
+.price{font-size:24px;font-weight:800;color:#95ef63}
+.old{text-decoration:line-through;color:#888}
+.buy{width:100%;padding:12px;background:#95ef63;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+.cart{max-width:900px;margin:30px auto;background:#151515;padding:20px;border-radius:15px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center}
+.modal-content{background:#151515;padding:25px;border-radius:15px;width:90%;max-width:500px}
+.modal-content input{width:100%;padding:10px;margin:6px 0}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="index.html">Home</a>
+<a href="nike-elite.html">Nike Elite</a>
+</nav>
+
+<h1>⚽ JA CLEATS COLLECTION ⚽</h1>
+
+<div class="products">
+
+<div class="product">
+<img src="c1.jpg" alt="Lunar New Year Cleats 🧧⚽">
+<h3>Lunar New Year Cleats 🧧⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('Lunar New Year Cleats 🧧⚽',80)">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="c2.jpg" alt="Ja Scratch Cleats 🐾⚽">
+<h3>Ja Scratch Cleats 🐾⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('Ja Scratch Cleats 🐾⚽',80)">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="c3.jpg" alt="Poison Dart Cleats 🐸⚽">
+<h3>Poison Dart Cleats 🐸⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('Poison Dart Cleats 🐸⚽',80)">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="c4.jpg" alt="Mink Brown Cleats 🤎⚽">
+<h3>Mink Brown Cleats 🤎⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('Mink Brown Cleats 🤎⚽',80)">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="c5.jpg" alt="Light Show Cleats ✨⚽">
+<h3>Light Show Cleats ✨⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('Light Show Cleats ✨⚽',80)">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="c6.jpg" alt="Max Volume Cleats 🔊⚽">
+<h3>Max Volume Cleats 🔊⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('Max Volume Cleats 🔊⚽',80)">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="c7.jpg" alt="Van Courver Cleats 🌲⚽">
+<h3>Van Courver Cleats 🌲⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('Van Courver Cleats 🌲⚽',80)">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="c8.jpg" alt="NY vs NY Cleats 🗽⚽">
+<h3>NY vs NY Cleats 🗽⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('NY vs NY Cleats 🗽⚽',80)">Add To Cart</button>
+</div>
+
+<div class="product">
+<img src="c9.jpg" alt="Day Break Cleats 🌅⚽">
+<h3>Day Break Cleats 🌅⚽</h3>
+<p class="old">$120</p>
+<p class="price">$80</p>
+<button class="buy" onclick="addToCart('Day Break Cleats 🌅⚽',80)">Add To Cart</button>
+</div>
+
+</div>
+
+<div class="cart">
+<h2>🛒 Shopping Cart (<span id="cartCount">0</span>)</h2>
+<ul id="cartItems"></ul>
+<h3 id="cartTotal">Total: $0</h3>
+<button class="buy" onclick="checkout()">Checkout</button>
+</div>
+
+<div id="checkoutModal" class="modal">
+<div class="modal-content">
+<h2>Checkout</h2>
+<input placeholder="Full Name">
+<input placeholder="Email">
+<input placeholder="Cleat Size">
+<button class="buy">Submit Order</button>
+<button class="buy" onclick="closeCheckout()">Close</button>
+</div>
+</div>
+
+<script>
+let cart=[];
+let total=0;
+
+function addToCart(name,price){
+cart.push({name,price});
+total+=price;
+renderCart();
+}
+
+function renderCart(){
+const list=document.getElementById('cartItems');
+list.innerHTML='';
+cart.forEach(item=>{
+list.innerHTML += `<li>${item.name} - $${item.price}</li>`;
+});
+document.getElementById('cartCount').textContent=cart.length;
+document.getElementById('cartTotal').textContent='Total: $'+total;
+}
+
+function checkout(){
+document.getElementById('checkoutModal').style.display='flex';
+}
+
+function closeCheckout(){
+document.getElementById('checkoutModal').style.display='none';
+}
+</script>
+</body>
+</html>

@@ -1440,25 +1440,6 @@ Close
 </a>
 </p>
 </footer>
-function searchProducts(){
-
-let input =
-document.getElementById("searchBar")
-.value.toLowerCase();
-
-let products =
-document.querySelectorAll(".product");
-
-products.forEach(product => {
-
-let name =
-product.innerText.toLowerCase();
-
-if(name.includes(input)){
-product.style.display = "block";
-}else{
-product.style.display = "none";
-}
 
 });
 
@@ -1609,12 +1590,10 @@ ${document.getElementById("customerSize").value}
 ${document.getElementById("customerPayment").value}
 
 🛒 Order:
-
-🛒 Order:
 ${orderText}
 
 💰 Total:
-$${total}`
+$${total}
 };
 
 try{

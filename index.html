@@ -84,20 +84,22 @@ margin:0 auto;
 padding:40px 30px;
 }
 .product{
+min-width:250px;
+max-width:250px;
 background:white;
 border-radius:20px;
-padding:20px;
+padding:15px;
 text-align:center;
 box-shadow:0 5px 20px rgba(0,0,0,.1);
 transition:.3s;
 overflow:hidden;
-position:relative;
 }
 .products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-margin-top:30px;
+display:flex;
+overflow-x:auto;
+gap:20px;
+padding:20px;
+scroll-behavior:smooth;
 }
 .product:hover{
 transform:translateY(-10px);

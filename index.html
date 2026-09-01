@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AJDidThese | Custom Sneakers & Slides</title>
-<meta name="description" content="Shop limited, hand-painted custom sneakers and the new Chrome Heart Nike Mind Slides from AJDidThese.">
+<meta name="description" content="Shop limited, hand-painted custom sneakers and the new Nike Chrome Slides from AJDidThese.">
 <style>
 .toast{
 position:fixed;
@@ -796,6 +796,52 @@ body{line-height:1.5;overflow-x:hidden;}
   .collection-scroll,.products,.naruto-scroll{grid-template-columns:1fr;}
 }
 
+/* ===== Single-file product detail view ===== */
+.product img,.product h3{cursor:pointer;}
+.product img:focus-visible,.product h3:focus-visible{outline:3px solid #fff;outline-offset:3px;}
+.product-modal-card{
+  width:min(94vw,980px)!important;
+  max-width:980px!important;
+  padding:24px!important;
+  border:1px solid #555!important;
+  background:#0b0b0b!important;
+  text-align:left!important;
+}
+.product-modal-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:34px;align-items:center;}
+.product-modal-image{
+  width:100%!important;
+  height:min(58vh,560px)!important;
+  margin:0!important;
+  padding:18px;
+  object-fit:contain;
+  background:linear-gradient(145deg,#f6f6f6,#d4d4d4);
+  border-radius:20px;
+}
+.product-modal-copy h2{font-size:clamp(2rem,5vw,4.25rem);line-height:.95;margin:12px 0;letter-spacing:-2px;}
+.product-modal-price{font-size:2rem;font-weight:900;margin:14px 0;}
+.product-modal-copy p{color:#bbb;}
+.product-modal-copy label{display:block;margin:22px 0 8px;font-weight:900;}
+.product-size{
+  width:100%;
+  min-height:50px;
+  padding:11px 12px;
+  color:#fff;
+  background:#050505;
+  border:1px solid #555;
+  border-radius:11px;
+}
+.product-modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.product-modal-actions .buy{width:auto;min-width:210px;}
+.product-modal-close{background:transparent!important;color:#fff!important;border:1px solid #555!important;}
+@media(max-width:700px){
+  .product-modal-card{padding:14px!important;}
+  .product-modal-grid{grid-template-columns:1fr;gap:18px;}
+  .product-modal-image{height:34vh!important;min-height:220px;}
+  .product-modal-copy h2{font-size:2.25rem;letter-spacing:-1px;}
+  .product-modal-actions{display:grid;}
+  .product-modal-actions .buy{width:100%;}
+}
+
 </style>
 </head>
 
@@ -822,11 +868,11 @@ body{line-height:1.5;overflow-x:hidden;}
 <section class="chrome-hero">
   <div class="chrome-hero-text">
     <span class="chrome-badge">NEW RELEASE</span>
-    <h2>CHROME HEART<br>NIKE MIND SLIDES</h2>
+    <h2>NIKE<br>CHROME SLIDES</h2>
     <p>A bold black-and-white custom made for everyday comfort. Limited quantities available.</p>
     <a href="#chrome-heart-slides" class="chrome-hero-btn">SHOP THE NEW RELEASE →</a>
   </div>
-  <img src="Chromeslides.jpg" alt="Chrome Heart Nike Mind Slides">
+  <img src="Chromeslides.jpg" alt="Nike Chrome Slides">
 </section>
 
 <header>
@@ -885,7 +931,7 @@ background:linear-gradient(90deg,transparent,#00d26a,transparent);
 
 <img src="Chromeslides.jpg
            "
-alt="Chrome Heart Nike Mind Slides"
+alt="Nike Chrome Slides"
 style="
 width:100%;
 height:250px;
@@ -896,13 +942,13 @@ padding:10px;
 margin-bottom:15px;
 ">
 
-<h3>Chrome Heart Nike Mind Slides</h3>
+<h3>Nike Chrome Slides</h3>
 
 <p>
 Clean monochrome styling, custom Chrome Heart-inspired details, and an easy everyday slide silhouette.
 </p>
 <div class="featured-actions">
-  <button class="buy" onclick="addToCart('Chrome Heart Nike Mind Slides',120)">Add To Cart — $120</button>
+  <button class="buy" onclick="addToCart('Nike Chrome Slides',70)">Add To Cart — $70</button>
   <a href="custom.html" class="request-link">Request a custom design</a>
 </div>
 
@@ -1632,8 +1678,8 @@ Add To Cart
 
 <div class="product" id="chrome-heart-slides">
 
-<img src="IMG_2875.jpeg"
-alt="Chrome Heart Nike Mind Slides"
+<img src="Chromeslides.jpg"
+alt="Nike Chrome Slides"
 style="
 width:100%;
 height:250px;
@@ -1645,14 +1691,14 @@ margin-bottom:15px;
 ">
 
 <span class="badge">NEW RELEASE</span>
-<h3>Chrome Heart Nike Mind Slides</h3>
+<h3>Nike Chrome Slides</h3>
 
-<p class="old">$150</p>
-<p class="price">$120</p>
+<p class="old">$100</p>
+<p class="price">$70</p>
 <p class="discount">Save $30</p>
 
 <button class="buy"
-onclick="addToCart('Chrome Heart Nike Mind Slides',120)">
+onclick="addToCart('Nike Chrome Slides',70)">
 Add To Cart
 </button>    
     </div>       
@@ -1701,6 +1747,32 @@ Checkout
 </button>
 </div>
 
+</div>
+
+<div id="productModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="productModalName">
+  <div class="modal-content product-modal-card">
+    <div class="product-modal-grid">
+      <img id="productModalImage" class="product-modal-image" alt="">
+      <div class="product-modal-copy">
+        <span class="badge">PRODUCT DETAILS</span>
+        <h2 id="productModalName"></h2>
+        <div id="productModalPrice" class="product-modal-price"></div>
+        <p>Hand-painted custom artwork made to order. Select your size before adding this pair to your cart.</p>
+        <label for="productModalSize">Choose your size</label>
+        <select id="productModalSize" class="product-size">
+          <option value="">Select a size</option>
+          <option>US 5</option><option>US 5.5</option><option>US 6</option><option>US 6.5</option>
+          <option>US 7</option><option>US 7.5</option><option>US 8</option><option>US 8.5</option>
+          <option>US 9</option><option>US 9.5</option><option>US 10</option><option>US 10.5</option>
+          <option>US 11</option><option>US 11.5</option><option>US 12</option><option>US 13</option>
+        </select>
+        <div class="product-modal-actions">
+          <button class="buy" type="button" onclick="addSelectedProduct()">Add To Cart</button>
+          <button class="close product-modal-close" type="button" onclick="closeProductModal()">Back To Store</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="paymentModal" class="modal">
@@ -1803,7 +1875,9 @@ Close
   
 
 let cart = [];
-let total = 0;
+try { cart = JSON.parse(localStorage.getItem("ajdidthese-cart")) || []; } catch(error) { cart = []; }
+let total = cart.reduce((sum,item)=>sum + Number(item.price || 0),0);
+let selectedProduct = null;
 
 function addToCart(name, price){
 
@@ -1850,6 +1924,7 @@ cart.length;
 document.getElementById("cartTotal")
 .innerHTML =
 "Total: $" + total;
+try { localStorage.setItem("ajdidthese-cart",JSON.stringify(cart)); } catch(error) {}
 }
 
 function removeItem(index){
@@ -1878,6 +1953,65 @@ function closeModal(){
 document.getElementById("paymentModal")
 .style.display="none";
 }
+
+function productSlug(name){
+return name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+}
+
+function openProductModal(card){
+const image = card.querySelector("img");
+const nameElement = card.querySelector("h3");
+const priceElement = card.querySelector(".price");
+if(!image || !nameElement || !priceElement) return;
+const price = Number(priceElement.textContent.replace(/[^0-9.]/g,""));
+selectedProduct = {name:nameElement.textContent.trim(),price,image:image.getAttribute("src").trim()};
+document.getElementById("productModalName").textContent = selectedProduct.name;
+document.getElementById("productModalPrice").textContent = "$" + selectedProduct.price;
+const modalImage = document.getElementById("productModalImage");
+modalImage.src = selectedProduct.image;
+modalImage.alt = selectedProduct.name;
+document.getElementById("productModalSize").value = "";
+document.getElementById("productModal").style.display = "flex";
+history.replaceState(null,"","#shoe=" + productSlug(selectedProduct.name));
+}
+
+function closeProductModal(){
+document.getElementById("productModal").style.display = "none";
+history.replaceState(null,"",location.pathname + location.search);
+}
+
+function addSelectedProduct(){
+if(!selectedProduct) return;
+const size = document.getElementById("productModalSize").value;
+if(!size){
+alert("Please choose a shoe size.");
+document.getElementById("productModalSize").focus();
+return;
+}
+addToCart(selectedProduct.name + " — " + size,selectedProduct.price);
+closeProductModal();
+}
+
+function decorateProducts(){
+document.querySelectorAll(".product").forEach(card=>{
+const name = card.querySelector(":scope > h3") || card.querySelector("h3");
+const image = card.querySelector(":scope > img") || card.querySelector("img");
+if(!name || !image) return;
+card.dataset.productSlug = productSlug(name.textContent.trim());
+[name,image].forEach(target=>{
+target.setAttribute("tabindex","0");
+target.setAttribute("role","link");
+target.setAttribute("aria-label","View " + name.textContent.trim());
+target.addEventListener("click",()=>openProductModal(card));
+target.addEventListener("keydown",event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();openProductModal(card);}});
+});
+});
+const requested = location.hash.startsWith("#shoe=") ? location.hash.slice(6) : "";
+if(requested){
+const match = Array.from(document.querySelectorAll(".product")).find(card=>card.dataset.productSlug===requested);
+if(match) openProductModal(match);
+}
+}
 let timeLeft = 128 * 60 * 60;
 
 function updateTimer() {
@@ -1900,63 +2034,34 @@ window.onclick=function(event){
 const modal =
 document.getElementById("paymentModal");
 
+const productModal = document.getElementById("productModal");
+
 if(event.target===modal){
 modal.style.display="none";
 }
+if(event.target===productModal){
+closeProductModal();
+}
 }
 async function sendOrder(){
-let orderNumber =
-Math.floor(Math.random() * 1001) + 2000;
-let orderText = "";
-
-cart.forEach(item=>{
-orderText += `${item.name} - $${item.price}\n`;
-});
-
 const payload = {
-content:
-`🔥 NEW AJDidThese ORDER 🔥
-Order Number:
-#${orderNumber}
-🧾Name:
-${document.getElementById("customerFirst").value}
-${document.getElementById("customerLast").value}
-
-🧾 Email:
-${document.getElementById("customerEmail").value}
-
-🧾 Phone:
-${document.getElementById("customerPhone").value}
-
-📦 Address:
-${document.getElementById("customerAddress").value}
-
-🌆City:
-${document.getElementById("customerCity").value}
-
-🌆 State:
-${document.getElementById("customerState").value}
-
-🧾 ZIP:
-${document.getElementById("customerZip").value}
-👟 Shoe Size:
-${document.getElementById("customerSize").value}
-
-💰 Payment Verification:
-${document.getElementById("customerPayment").value}
-
-Order:
-
-Order:
-${orderText}
-
-Total:
-${total}`
+customer:{
+firstName:document.getElementById("customerFirst").value.trim(),
+lastName:document.getElementById("customerLast").value.trim(),
+email:document.getElementById("customerEmail").value.trim(),
+phone:document.getElementById("customerPhone").value.trim(),
+address:document.getElementById("customerAddress").value.trim(),
+city:document.getElementById("customerCity").value.trim(),
+state:document.getElementById("customerState").value.trim(),
+zip:document.getElementById("customerZip").value.trim(),
+payment:document.getElementById("customerPayment").value.trim()
+},
+items:cart
 };
 
 try{
 
-await fetch("https://discord.com/api/webhooks/1514718583001714800/s5ngxaG0QcJG0HijXtUkIf6rVpqHNLq066_JgXymQBDcRkt7CzPTh1AyprueqcX15AnB",{
+const response = await fetch("/api/orders",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -1964,9 +2069,12 @@ headers:{
 body:JSON.stringify(payload)
 });
 
+const result = await response.json().catch(()=>({}));
+if(!response.ok) throw new Error(result.error || "Order submission failed");
+
 alert(
 "Thank you for your order!\n\n" +
-"Order Number: #" + orderNumber +
+"Order Number: #" + result.orderNumber +
 "\n\nOnce payment is verified, your order will be processed."
 );
 
@@ -1978,10 +2086,13 @@ closeModal();
 
 }catch(error){
 
-alert("Failed to submit order.");
+alert(error.message || "Failed to submit order.");
 
 }
 }
+
+decorateProducts();
+renderCart();
 
 </script>
 <footer style="

@@ -2044,37 +2044,50 @@ closeProductModal();
 }
 }
 async function sendOrder(){
-const payload = {
-customer:{
-firstName:document.getElementById("customerFirst").value.trim(),
-lastName:document.getElementById("customerLast").value.trim(),
-email:document.getElementById("customerEmail").value.trim(),
-phone:document.getElementById("customerPhone").value.trim(),
-address:document.getElementById("customerAddress").value.trim(),
-city:document.getElementById("customerCity").value.trim(),
-state:document.getElementById("customerState").value.trim(),
-zip:document.getElementById("customerZip").value.trim(),
-payment:document.getElementById("customerPayment").value.trim()
-},
-items:cart
-};
+const firstName = document.getElementById("customerFirst").value.trim();
+const lastName = document.getElementById("customerLast").value.trim();
+const email = document.getElementById("customerEmail").value.trim();
+const phone = document.getElementById("customerPhone").value.trim();
+const address = document.getElementById("customerAddress").value.trim();
+const city = document.getElementById("customerCity").value.trim();
+const state = document.getElementById("customerState").value.trim();
+const zip = document.getElementById("customerZip").value.trim();
+const payment = document.getElementById("customerPayment").value.trim();
+
+if(!firstName || !lastName || !email || !address || !city || !state || !zip || !payment){
+alert("Please complete every required checkout field.");
+return;
+}
+
+const orderNumber = Math.floor(Math.random() * 9000) + 1000;
+const orderText = cart.map(item=>`• ${item.name} - $${item.price}`).join("\n");
+const content = `🔥 NEW AJDidThese ORDER #${orderNumber}
+Name: ${firstName} ${lastName}
+Email: ${email}
+Phone: ${phone || "Not provided"}
+Ship to: ${address}, ${city}, ${state} ${zip}
+Payment verification: ${payment}
+
+Items:
+${orderText}
+
+Total: $${total}`;
 
 try{
 
-const response = await fetch("/api/orders",{
+const response = await fetch("https://discord.com/api/webhooks/1514718583001714800/s5ngxaG0QcJG0HijXtUkIf6rVpqHNLq066_JgXymQBDcRkt7CzPTh1AyprueqcX15AnB",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body:JSON.stringify(payload)
+body:JSON.stringify({content,allowed_mentions:{parse:[]}})
 });
 
-const result = await response.json().catch(()=>({}));
-if(!response.ok) throw new Error(result.error || "Order submission failed");
+if(!response.ok) throw new Error("Order submission failed");
 
 alert(
 "Thank you for your order!\n\n" +
-"Order Number: #" + result.orderNumber +
+"Order Number: #" + orderNumber +
 "\n\nOnce payment is verified, your order will be processed."
 );
 

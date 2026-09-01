@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AJDidThese Anime Store</title>
+<title>AJDidThese | Custom Sneakers & Slides</title>
+<meta name="description" content="Shop limited, hand-painted custom sneakers and the new Chrome Heart Nike Mind Slides from AJDidThese.">
 <style>
 .toast{
 position:fixed;
@@ -118,12 +119,6 @@ height:8px;
 .collection-scroll::-webkit-scrollbar-thumb{
 background:#00d26a;
 border-radius:20px;
-}  
-display:flex;
-gap:20px;
-overflow-x:auto;
-padding:20px 0;
-scroll-behavior:smooth;
 }
 
 .naruto-scroll::-webkit-scrollbar{
@@ -307,7 +302,6 @@ transform:translateY(-2px);
 .navbar a:hover{
 background:#00d26a;
 color:black;
-}
 }
   .collections{
 display:grid;
@@ -688,12 +682,126 @@ footer a{color:#fff;}
   .chrome-hero{margin:10px 12px 30px!important;}
 }
 
+/* ===== Balanced storefront layout ===== */
+body{line-height:1.5;overflow-x:hidden;}
+.container{width:min(100% - 32px,1320px);padding:28px 0 72px;}
+.section-title{
+  font-size:clamp(2rem,5vw,3.25rem)!important;
+  margin:70px 0 20px;
+  line-height:1.05;
+}
+.collection-scroll,.products,.naruto-scroll{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px!important;
+  overflow:visible!important;
+  padding:8px 0 20px!important;
+  align-items:stretch;
+}
+.product{
+  min-width:0!important;
+  max-width:none!important;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  text-align:left;
+}
+.product img,.product img[style]{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1 / 1;
+  object-fit:contain!important;
+  margin:0 0 10px!important;
+}
+.product h3{font-size:1.08rem;line-height:1.25;min-height:2.7em;margin:0;}
+.product .price{margin:2px 0;font-size:1.45rem;}
+.product .discount{margin-bottom:12px;}
+.product .buy{margin-top:auto;}
+.badge{
+  align-self:flex-start;
+  padding:6px 10px;
+  border:1px solid #555;
+  border-radius:999px;
+  color:#fff;
+  font-size:.72rem;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.chrome-hero{width:min(100% - 32px,1320px);margin-top:24px!important;}
+.chrome-hero-text{flex:1;}
+.chrome-hero img{aspect-ratio:4 / 3;object-fit:contain;}
+.featured{
+  width:min(100% - 32px,1080px);
+  display:grid;
+  grid-template-columns:minmax(260px,.9fr) minmax(280px,1.1fr);
+  align-items:center;
+  gap:42px;
+  text-align:left;
+}
+.featured img,.featured img[style]{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:4 / 3;
+  object-fit:contain!important;
+  margin:0!important;
+  grid-row:1 / span 6;
+}
+.featured h2{font-size:.82rem;letter-spacing:.16em;color:#bdbdbd!important;}
+.featured h3{font-size:clamp(2rem,4vw,3.35rem);line-height:1;margin:0;}
+.featured p{color:#bbb;max-width:52ch;}
+.featured .featured-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.featured .buy{width:auto;min-width:180px;margin:0;}
+.request-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:12px 20px;
+  border:1px solid #555;
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  border-radius:12px;
+}
+.social-card{
+  text-align:center;
+  padding:42px 24px;
+  margin:30px auto 10px;
+  max-width:900px;
+  background:linear-gradient(145deg,#171717,#090909)!important;
+  border:1px solid #292929;
+  border-radius:22px;
+  box-shadow:0 12px 35px rgba(0,0,0,.38)!important;
+}
+.social-card p{color:#bbb;}
+.social-card a{background:#fff!important;color:#000!important;}
+.drop-banner{
+  background:linear-gradient(90deg,#080808,#202020,#080808)!important;
+  border:1px solid #3a3a3a;
+  box-shadow:none!important;
+  color:#fff!important;
+}
+@media(max-width:720px){
+  .container{width:min(100% - 24px,1320px);}
+  .collection-scroll,.products,.naruto-scroll{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px!important;}
+  .product{padding:12px!important;border-radius:16px!important;}
+  .product h3{font-size:.95rem;min-height:2.5em;}
+  .product .price{font-size:1.25rem;}
+  .featured{grid-template-columns:1fr;gap:22px;text-align:center;}
+  .featured img,.featured img[style]{grid-row:auto;}
+  .featured .featured-actions{justify-content:center;}
+}
+@media(max-width:420px){
+  .collection-scroll,.products,.naruto-scroll{grid-template-columns:1fr;}
+}
+
 </style>
 </head>
 
 <body>
 <div id="toast" class="toast">
-ð Added to Cart
+&#x1F6D2; Added to Cart
 </div>
 <button class="menu-btn" onclick="document.querySelector('.navbar').classList.toggle('show')">
 🧾Menu
@@ -703,7 +811,7 @@ footer a{color:#fff;}
 <a href="#mario">Mario</a>
 <a href="nike-elite.html">Nike Elite</a>
 <a href="jacleats.html">JA Cleats</a>
-<a href="#⚡️special⚡️">Special</a>
+<a href="#special">Special</a>
 <a href="#cart">Cart</a>
 <a href="contact.html">Contact</a>
 <a href="shipping.html">Shipping</a>
@@ -713,12 +821,12 @@ footer a{color:#fff;}
 
 <section class="chrome-hero">
   <div class="chrome-hero-text">
-    <span class="chrome-badge">🔥 TRENDING • NEW RELEASE</span>
-    <h2>CHROME SLIDES</h2>
-    <p>The latest drop is here. Limited custom slides with the Chrome Heart-inspired look.</p>
-    <a href="#⚡️special⚡️" class="chrome-hero-btn">SHOP THE NEW RELEASE →</a>
+    <span class="chrome-badge">NEW RELEASE</span>
+    <h2>CHROME HEART<br>NIKE MIND SLIDES</h2>
+    <p>A bold black-and-white custom made for everyday comfort. Limited quantities available.</p>
+    <a href="#chrome-heart-slides" class="chrome-hero-btn">SHOP THE NEW RELEASE →</a>
   </div>
-  <img src="IMG_2875.jpeg" alt="Chrome Slides">
+  <img src="IMG_2875.jpeg" alt="Chrome Heart Nike Mind Slides">
 </section>
 
 <header>
@@ -749,7 +857,7 @@ margin-top:25px;
 font-weight:bold;
 ">
 
-<div>📦­100+ Orders</div>
+<div>&#x1F4E6; 100+ Orders</div>
 <div>⚡️Fast Shipping</div>
 <div>🔐Secure Checkout</div>
 <div>🎨Hand Painted</div>
@@ -771,13 +879,12 @@ height:2px;
 background:linear-gradient(90deg,transparent,#00d26a,transparent);
 "></div>
  </header>
-</div>
 <section class="featured">
 
-<h2>🔥 BEST SELLER 🔥</h2>
+<h2>NEW RELEASE</h2>
 
-<img src="itachi 4s.jpg"
-alt="Itachi JA 4s"
+<img src="IMG_2875.jpeg"
+alt="Chrome Heart Nike Mind Slides"
 style="
 width:100%;
 height:250px;
@@ -788,35 +895,21 @@ padding:10px;
 margin-bottom:15px;
 ">
 
-<h3>Itachi JA 4s</h3>
+<h3>Chrome Heart Nike Mind Slides</h3>
 
 <p>
-Our most popular custom anime shoe.
-Limited stock available.
+Clean monochrome styling, custom Chrome Heart-inspired details, and an easy everyday slide silhouette.
 </p>
-<a href="custom.html" style="
-display:inline-block;
-padding:15px 30px;
-background:linear-gradient(45deg,#ff0000,#990000);
-color:white;
-text-decoration:none;
-font-weight:bold;
-border-radius:12px;
-margin-top:20px;
-font-size:1.1rem;
-">
-🔥Request Your Own Design
-</a>
-<button class="buy"
-onclick="addToCart('Itachi JA 4s',70)">
-Shop Now - $70
-</button>
+<div class="featured-actions">
+  <button class="buy" onclick="addToCart('Chrome Heart Nike Mind Slides',120)">Add To Cart — $120</button>
+  <a href="custom.html" class="request-link">Request a custom design</a>
+</div>
 
 </section>
 <div class="container">
 <!-- TikTok Section -->
 
-<div style="
+<div class="social-card" style="
 text-align:center;
 padding:40px 20px;
 margin:40px auto;
@@ -835,7 +928,7 @@ box-shadow:0 5px 20px rgba(0,0,0,.1);
 <br>
  🔥Customer showcases
 <br>
-🔥­ New drops first
+&#x1F525; New drops first
 </p>
 
 <a href="https://www.tiktok.com/@ajdiddout"
@@ -866,7 +959,7 @@ font-weight:900;
 ">
 🔥🦊 Naruto Collection 🦊🔥
 </h2>
-  <div style="
+  <div class="drop-banner" style="
 background:linear-gradient(90deg,#ff5500,#ff0000,#ff5500);
 padding:15px;
 text-align:center;
@@ -883,8 +976,6 @@ margin-bottom:20px;
 <div class="naruto-scroll">
 
 <div class="product">
-<div class="badge">BEST SELLER</div>
-
 <img src="itachi 4s.jpg"
 alt="Itachi JA 4s"
 style="
@@ -909,17 +1000,13 @@ onclick="addToCart('Itachi JA 4s',70)">
 Add To Cart
 </button>
 </div>
-
 <div class="product">
-<div class="badge">BEST SELLER</div>
 <img src="itachi.jpg" alt="Itachi Shoe" style="width:100%;border-radius:15px;margin-bottom:10px;">
 <h3>Itachi Shadow Pack</h3>
 <p class="old">$100</p>
 <p class="price">$70</p>
 <p class="discount">Save $30</p>
 <button class="buy" onclick="addToCart('Itachi Shadow Pack',70)">Add To Cart</button>
-</div>
-
 <div class="product">
 
 <img src="sasuke.jpg"
@@ -1004,9 +1091,8 @@ Add To Cart
 </button>
 </div> 
 </div>
-</div>
 <h2 id="onepiece" class="section-title">
-🏴‍☠️🍖 One Piece Collection🍖🏴‍☠️
+&#x1F3F4;&#x200D;&#x2620;&#xFE0F; One Piece Collection
 </h2>
 
 <div class="collection-scroll">
@@ -1069,11 +1155,6 @@ Add To Cart
 </div>
 
 
-<div class="product">
-
-
-</div>
-</div>
 <h2 id="mario" class="section-title">
 🍄 Mario Collection🍄
 </h2>
@@ -1121,14 +1202,14 @@ padding:10px;
 margin-bottom:15px;
 ">
 
-<h3>Yoshi JA 3s 💚 </h3>
+<h3>Yoshi JA 3s &#x1F49A;</h3>
 
 <p class="old">$100</p>
 <p class="price">$70</p>
 <p class="discount">Save $30</p>
 
 <button class="buy"
-onclick="addToCart('Yoshi JA 3s ð',70)">
+onclick="addToCart('Yoshi JA 3s',70)">
 Add To Cart
 </button>
 
@@ -1161,7 +1242,7 @@ Add To Cart
 </div>
 
 </div>
-<h2 id="⚡️special⚡️" class="section-title">Special Editions
+<h2 id="special" class="section-title">Special Editions
 </h2>
 
 <div class="products">
@@ -1178,7 +1259,7 @@ border-radius:12px;
 padding:10px;
 margin-bottom:15px;
 ">
-<h3>spiderman</h3>
+<h3>Spider-Man</h3>
 
 <p class="old">$120</p>
 
@@ -1187,12 +1268,11 @@ margin-bottom:15px;
 <p class="discount">Save $30</p>
 
 <button class="buy"
-onclick="addToCart('spiderman',70)">
+onclick="addToCart('Spider-Man',90)">
 Add To Cart
 </button>
 
 </div>
-</div>           
 <div class="product">
 
 <img src="gojo.jpg"
@@ -1326,7 +1406,7 @@ margin-bottom:15px;
 <p class="discount">Save $30</p>
 
 <button class="buy"
-onclick="addToCart('Ice 🧊',70)">
+onclick="addToCart('Ice',70)">
 Add To Cart
 </button>
 
@@ -1433,7 +1513,7 @@ margin-bottom:15px;
 <p class="discount">Save $30</p>
 
 <button class="buy"
-onclick="addToCart('Chrome Heart Ja 4s ð¤',120)">
+onclick="addToCart('Chrome Heart Ja 4s',120)">
 Add To Cart
 </button>
 
@@ -1460,7 +1540,7 @@ margin-bottom:15px;
 <p class="discount">Save $30</p>
 
 <button class="buy"
-onclick="addToCart('Chrome Heart Shai 001 ð¤âï¸',120)">
+onclick="addToCart('Chrome Heart Shai 001',120)">
 Add To Cart
 </button>
 
@@ -1534,8 +1614,8 @@ margin-bottom:10px;
 border:2px solid #444;
 padding:10px;
 ">
-<span class="badge">ð NEW DROP</span>
-<h3>Dragonfruit Ja 3 ðð¥</h3>
+<span class="badge">NEW DROP</span>
+<h3>Dragonfruit Ja 3 &#x1F349;&#x1F525;</h3>
 
 <p class="old">$100</p>
 
@@ -1549,10 +1629,10 @@ Add To Cart
 </button>
  </div>
 
-<div class="product">
+<div class="product" id="chrome-heart-slides">
 
 <img src="IMG_2875.jpeg"
-alt="Chrome Slides"
+alt="Chrome Heart Nike Mind Slides"
 style="
 width:100%;
 height:250px;
@@ -1563,14 +1643,15 @@ padding:10px;
 margin-bottom:15px;
 ">
 
-<h3>Chrome Slides</h3>
+<span class="badge">NEW RELEASE</span>
+<h3>Chrome Heart Nike Mind Slides</h3>
 
 <p class="old">$150</p>
 <p class="price">$120</p>
 <p class="discount">Save $30</p>
 
 <button class="buy"
-onclick="addToCart('Chrome Slides',120)">
+onclick="addToCart('Chrome Heart Nike Mind Slides',120)">
 Add To Cart
 </button>    
     </div>       
@@ -1587,7 +1668,7 @@ border-radius:12px;
 padding:10px;
 margin-bottom:15px;
 ">
-<span class="badge">â¡ LIMITED</span>
+<span class="badge">LIMITED</span>
 <h3>Skull Ja 3s💀</h3>
 
 <p class="old">$100</p>
@@ -1697,7 +1778,7 @@ Close
 </div>
 
 <footer style="text-align:center;padding:40px;">
-<p>Â© 2026 AJDidThese</p>
+<p>&copy; 2026 AJDidThese</p>
 
 <p>
 <a href="contact.html">Contact</a> |
@@ -1804,7 +1885,7 @@ function updateTimer() {
   const seconds = timeLeft % 60;
 
   document.getElementById("sale-timer").innerHTML =
-    `ð¥ ${hours}H ${String(minutes).padStart(2,'0')}M ${String(seconds).padStart(2,'0')}S BEFORE 30% OFF DISCOUNT ENDS ð¥`;
+    `&#x1F525; ${hours}H ${String(minutes).padStart(2,'0')}M ${String(seconds).padStart(2,'0')}S BEFORE 30% OFF DISCOUNT ENDS &#x1F525;`;
 
   if (timeLeft > 0) {
     timeLeft--;
@@ -1868,8 +1949,8 @@ Order:
 Order:
 ${orderText}
 
-ð° Total:
-$${total}`
+Total:
+${total}`
 };
 
 try{

@@ -376,6 +376,318 @@ display:flex;
 }
 
 }
+
+/* Chrome Slides Hero */
+.chrome-hero{
+  margin:0 auto 35px;
+  max-width:1400px;
+  min-height:520px;
+  padding:55px 35px;
+  border-radius:28px;
+  background:linear-gradient(135deg,#050505,#1a1a1a 55%,#303030);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 12px 45px rgba(0,0,0,.25);
+}
+.chrome-hero::before{
+  content:"";
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  right:-120px;
+  top:-120px;
+}
+.chrome-hero-text{
+  position:relative;
+  z-index:2;
+  max-width:600px;
+}
+.chrome-badge{
+  display:inline-block;
+  background:white;
+  color:#111;
+  padding:9px 15px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:.9rem;
+  margin-bottom:18px;
+}
+.chrome-hero h2{
+  font-size:clamp(2.4rem,6vw,5rem);
+  line-height:.95;
+  margin:0 0 18px;
+  font-weight:900;
+  letter-spacing:-2px;
+}
+.chrome-hero p{
+  font-size:1.15rem;
+  color:#ddd;
+  margin-bottom:25px;
+}
+.chrome-hero-btn{
+  display:inline-block;
+  padding:15px 28px;
+  background:white;
+  color:#111;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:900;
+  transition:.2s;
+}
+.chrome-hero-btn:hover{
+  transform:scale(1.05);
+}
+.chrome-hero img{
+  position:relative;
+  z-index:2;
+  width:min(480px,45vw);
+  max-height:390px;
+  object-fit:contain;
+  border-radius:22px;
+  filter:drop-shadow(0 20px 25px rgba(0,0,0,.45));
+}
+@media(max-width:768px){
+  .chrome-hero{
+    min-height:auto;
+    padding:35px 22px;
+    flex-direction:column;
+    text-align:center;
+  }
+  .chrome-hero img{
+    width:90%;
+    max-height:300px;
+    order:-1;
+  }
+}
+
+
+/* ===== AJDidThese Premium Black & White Redesign ===== */
+:root{
+  --black:#050505;
+  --dark:#0d0d0d;
+  --gray:#171717;
+  --light:#f4f4f4;
+  --white:#fff;
+  --muted:#a8a8a8;
+  --line:#2a2a2a;
+  --accent:#fff;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(circle at 15% 5%,rgba(255,255,255,.07),transparent 28%),
+    radial-gradient(circle at 85% 25%,rgba(255,255,255,.05),transparent 30%),
+    linear-gradient(135deg,#050505 0%,#111 45%,#050505 100%);
+  color:#fff;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.navbar{
+  background:rgba(5,5,5,.88)!important;
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid #292929;
+  box-shadow:0 8px 30px rgba(0,0,0,.35);
+  position:sticky!important;
+  top:0;
+}
+.navbar a{
+  color:#fff!important;
+}
+.navbar a:hover{
+  background:#fff!important;
+  color:#000!important;
+  box-shadow:0 0 20px rgba(255,255,255,.25)!important;
+}
+header{
+  max-width:1200px;
+  padding:55px 20px 30px;
+}
+header h1{
+  color:#fff!important;
+  font-size:clamp(3rem,8vw,6rem);
+  letter-spacing:-4px;
+  text-shadow:0 10px 35px rgba(0,0,0,.7);
+}
+header p{color:#aaa!important;}
+.banner{
+  background:#fff!important;
+  color:#000!important;
+  box-shadow:0 10px 35px rgba(255,255,255,.12)!important;
+}
+.container{max-width:1450px;}
+.section-title{
+  color:#fff!important;
+  text-shadow:0 8px 30px rgba(0,0,0,.8)!important;
+  letter-spacing:-1px;
+}
+.product{
+  background:linear-gradient(145deg,#171717,#090909)!important;
+  color:#fff!important;
+  border:1px solid #292929;
+  border-radius:22px!important;
+  box-shadow:0 12px 35px rgba(0,0,0,.38)!important;
+  padding:18px!important;
+}
+.product:hover{
+  transform:translateY(-8px) scale(1.015);
+  border-color:#777;
+  box-shadow:0 20px 50px rgba(0,0,0,.6)!important;
+}
+.product img{
+  background:linear-gradient(145deg,#f5f5f5,#d9d9d9)!important;
+  border:1px solid #333;
+  padding:12px!important;
+  border-radius:17px!important;
+  object-fit:contain;
+}
+.product h3{color:#fff!important;}
+.product p{color:#bbb;}
+.old{color:#777!important;}
+.price{
+  color:#fff!important;
+  text-shadow:0 0 18px rgba(255,255,255,.2)!important;
+}
+.discount{color:#fff!important;}
+.buy{
+  background:#fff!important;
+  color:#000!important;
+  border-radius:12px!important;
+  box-shadow:0 5px 18px rgba(255,255,255,.08);
+}
+.buy:hover{
+  background:#ddd!important;
+  transform:translateY(-2px) scale(1.02)!important;
+}
+.collection-scroll,.products,.naruto-scroll{
+  scrollbar-color:#666 #111;
+}
+.collection-scroll::-webkit-scrollbar,
+.products::-webkit-scrollbar,
+.naruto-scroll::-webkit-scrollbar{height:7px;}
+.collection-scroll::-webkit-scrollbar-track,
+.products::-webkit-scrollbar-track,
+.naruto-scroll::-webkit-scrollbar-track{background:#111;}
+.collection-scroll::-webkit-scrollbar-thumb,
+.products::-webkit-scrollbar-thumb,
+.naruto-scroll::-webkit-scrollbar-thumb{
+  background:#777;
+  border-radius:20px;
+}
+.cart{
+  background:linear-gradient(145deg,#171717,#090909)!important;
+  color:#fff!important;
+  border:1px solid #292929;
+  box-shadow:0 15px 40px rgba(0,0,0,.45)!important;
+}
+.cart h2,.cart h3{color:#fff!important;}
+.remove{
+  background:#fff!important;
+  color:#000!important;
+}
+.checkout{
+  background:#fff!important;
+  color:#000!important;
+  border-radius:12px!important;
+}
+.collections{
+  background:transparent;
+}
+.collection-card{
+  background:linear-gradient(145deg,#191919,#080808)!important;
+  border:1px solid #444!important;
+  box-shadow:0 12px 35px rgba(0,0,0,.4)!important;
+}
+.collection-card:hover{
+  border-color:#fff!important;
+  box-shadow:0 0 35px rgba(255,255,255,.12)!important;
+}
+.featured{
+  max-width:1000px;
+  margin:35px auto 55px;
+  padding:35px;
+  background:linear-gradient(145deg,#181818,#080808)!important;
+  color:#fff!important;
+  border:1px solid #333;
+  border-radius:28px;
+  box-shadow:0 20px 55px rgba(0,0,0,.5);
+}
+.featured h2,.featured h3{color:#fff!important;}
+.featured img{
+  background:#eee!important;
+  border-radius:20px!important;
+}
+#sale-timer{color:#fff!important;text-shadow:0 0 15px rgba(255,255,255,.35)!important;}
+footer{
+  background:#030303!important;
+  color:#aaa!important;
+  border-top:1px solid #252525;
+}
+footer h3{color:#fff;}
+footer a{color:#fff;}
+.chrome-hero{
+  max-width:1450px!important;
+  margin:10px auto 35px!important;
+  min-height:580px!important;
+  background:
+    radial-gradient(circle at 75% 50%,rgba(255,255,255,.12),transparent 28%),
+    linear-gradient(135deg,#030303,#111 55%,#242424)!important;
+  border:1px solid #333;
+  box-shadow:0 25px 70px rgba(0,0,0,.65)!important;
+}
+.chrome-hero::after{
+  content:"NEW";
+  position:absolute;
+  right:28px;
+  top:25px;
+  color:#fff;
+  font-size:11px;
+  letter-spacing:3px;
+  font-weight:900;
+  border:1px solid #666;
+  padding:8px 12px;
+  border-radius:99px;
+}
+.chrome-hero h2{
+  color:#fff;
+  text-shadow:0 12px 35px rgba(0,0,0,.8);
+}
+.chrome-hero p{color:#bbb!important;}
+.chrome-badge{
+  background:#fff!important;
+  color:#000!important;
+  letter-spacing:1px;
+}
+.chrome-hero-btn{
+  background:#fff!important;
+  color:#000!important;
+  box-shadow:0 10px 30px rgba(255,255,255,.1);
+}
+.chrome-hero img{
+  background:linear-gradient(145deg,#f5f5f5,#cfcfcf);
+  padding:18px;
+  border:1px solid #555;
+}
+@media(max-width:768px){
+  header h1{letter-spacing:-2px;}
+  .featured{margin:25px 15px 40px;padding:22px;}
+  .chrome-hero{margin:10px 12px 30px!important;}
+}
+
 </style>
 </head>
 
@@ -391,13 +703,24 @@ display:flex;
 <a href="#mario">Mario</a>
 <a href="nike-elite.html">Nike Elite</a>
 <a href="jacleats.html">JA Cleats</a>
-<a href="#special">Special</a>
+<a href="#⚡️special⚡️">Special</a>
 <a href="#cart">Cart</a>
 <a href="contact.html">Contact</a>
 <a href="shipping.html">Shipping</a>
 <a href="returns.html">Returns</a>
 <a href="about.html">About</a>
 </nav>
+
+<section class="chrome-hero">
+  <div class="chrome-hero-text">
+    <span class="chrome-badge">🔥 TRENDING • NEW RELEASE</span>
+    <h2>CHROME SLIDES</h2>
+    <p>The latest drop is here. Limited custom slides with the Chrome Heart-inspired look.</p>
+    <a href="#⚡️special⚡️" class="chrome-hero-btn">SHOP THE NEW RELEASE →</a>
+  </div>
+  <img src="IMG_2875.jpeg" alt="Chrome Slides">
+</section>
+
 <header>
 <h1>AJDidThese</h1>
   <img src="IMG_2331.jpeg"
@@ -1229,7 +1552,7 @@ Add To Cart
 <div class="product">
 
 <img src="IMG_2875.jpeg"
-alt="chrombes 6"
+alt="Chrome Slides"
 style="
 width:100%;
 height:250px;
@@ -1240,14 +1563,14 @@ padding:10px;
 margin-bottom:15px;
 ">
 
-<h3>chrombes 6s</h3>
+<h3>Chrome Slides</h3>
 
 <p class="old">$150</p>
 <p class="price">$120</p>
 <p class="discount">Save $30</p>
 
 <button class="buy"
-onclick="addToCart('chrombes 6s')">
+onclick="addToCart('Chrome Slides',120)">
 Add To Cart
 </button>    
     </div>       

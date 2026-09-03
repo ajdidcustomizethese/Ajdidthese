@@ -1306,6 +1306,482 @@ button.menu-btn,
 }
 </style>
 
+
+<style id="ajd-stockx-product-layout">
+/* =========================================================
+   AJDIDTHESE — MARKETPLACE / STOCKX-STYLE PRODUCT ROWS
+   Desktop: 5 shoes visible like a marketplace feed
+   Mobile: one large shoe + part of next card, swipe left/right
+   ========================================================= */
+
+/* Keep the page itself from creating a sideways scrollbar */
+html, body { max-width:100%; overflow-x:hidden !important; }
+
+/* COLLECTION ROWS */
+.products,
+.collection-scroll,
+.naruto-scroll {
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  align-items:flex-start !important;
+  gap:28px !important;
+  width:100% !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  padding:10px 2px 28px !important;
+  margin:0 !important;
+  scroll-behavior:smooth !important;
+  scroll-snap-type:x proximity !important;
+  scrollbar-width:none !important;
+  -webkit-overflow-scrolling:touch !important;
+  touch-action:pan-x !important;
+  overscroll-behavior-x:contain !important;
+}
+
+.products::-webkit-scrollbar,
+.collection-scroll::-webkit-scrollbar,
+.naruto-scroll::-webkit-scrollbar {
+  display:none !important;
+  height:0 !important;
+}
+
+/* 5-card marketplace layout on desktop */
+.products > .product,
+.collection-scroll > .product,
+.naruto-scroll > .product {
+  flex:0 0 calc((100% - 112px) / 5) !important;
+  width:calc((100% - 112px) / 5) !important;
+  min-width:calc((100% - 112px) / 5) !important;
+  max-width:calc((100% - 112px) / 5) !important;
+  min-height:0 !important;
+  height:auto !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  text-align:left !important;
+  overflow:visible !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:0 !important;
+  scroll-snap-align:start !important;
+}
+
+/* StockX-like white product image tile */
+.products > .product img,
+.collection-scroll > .product img,
+.naruto-scroll > .product img {
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:1.08 / 1 !important;
+  min-height:0 !important;
+  max-height:none !important;
+  object-fit:contain !important;
+  background:#f7f7f7 !important;
+  border:0 !important;
+  border-radius:14px !important;
+  padding:18px !important;
+  margin:0 0 13px !important;
+  box-shadow:none !important;
+  transform:none !important;
+}
+
+.products > .product:hover img,
+.collection-scroll > .product:hover img,
+.naruto-scroll > .product:hover img {
+  transform:none !important;
+}
+
+/* Product title */
+.products > .product h3,
+.collection-scroll > .product h3,
+.naruto-scroll > .product h3 {
+  color:#fff !important;
+  font-size:15px !important;
+  line-height:1.25 !important;
+  font-weight:800 !important;
+  min-height:0 !important;
+  margin:0 0 7px !important;
+  text-align:left !important;
+}
+
+/* Description is less prominent, like a marketplace listing */
+.products > .product .product-description,
+.collection-scroll > .product .product-description,
+.naruto-scroll > .product .product-description {
+  color:#aaa !important;
+  font-size:11px !important;
+  line-height:1.35 !important;
+  margin:0 0 8px !important;
+  display:-webkit-box !important;
+  -webkit-line-clamp:2 !important;
+  -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+}
+
+/* Old price */
+.products > .product .old,
+.collection-scroll > .product .old,
+.naruto-scroll > .product .old {
+  color:#777 !important;
+  font-size:11px !important;
+  margin:0 0 1px !important;
+}
+
+/* Main price */
+.products > .product .price,
+.collection-scroll > .product .price,
+.naruto-scroll > .product .price {
+  color:#fff !important;
+  font-size:17px !important;
+  line-height:1.15 !important;
+  font-weight:900 !important;
+  margin:0 0 4px !important;
+  text-shadow:none !important;
+}
+
+/* Savings */
+.products > .product .discount,
+.collection-scroll > .product .discount,
+.naruto-scroll > .product .discount {
+  color:#aaa !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  margin:0 0 10px !important;
+}
+
+/* StockX-ish action button */
+.products > .product .buy,
+.collection-scroll > .product .buy,
+.naruto-scroll > .product .buy {
+  width:max-content !important;
+  min-width:0 !important;
+  min-height:36px !important;
+  margin:0 !important;
+  padding:8px 15px !important;
+  border-radius:999px !important;
+  background:#0b0b0b !important;
+  color:#fff !important;
+  border:1px solid #aaa !important;
+  box-shadow:none !important;
+  font-size:12px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+}
+
+.products > .product .buy:hover,
+.collection-scroll > .product .buy:hover,
+.naruto-scroll > .product .buy:hover {
+  background:#fff !important;
+  color:#000 !important;
+  border-color:#fff !important;
+  transform:none !important;
+}
+
+/* Hide the old big-card hover movement */
+.products > .product:hover,
+.collection-scroll > .product:hover,
+.naruto-scroll > .product:hover {
+  transform:none !important;
+  box-shadow:none !important;
+}
+
+/* Desktop row arrows/hint */
+.market-row-label {
+  color:#888;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-align:right;
+  margin:-6px 2px 4px;
+}
+
+/* =========================================================
+   MOBILE — BIG SWIPEABLE LISTINGS
+   ========================================================= */
+@media (max-width:900px) {
+  .products,
+  .collection-scroll,
+  .naruto-scroll {
+    gap:18px !important;
+    padding:6px 2px 24px !important;
+    scroll-snap-type:x mandatory !important;
+  }
+
+  .products > .product,
+  .collection-scroll > .product,
+  .naruto-scroll > .product {
+    flex:0 0 76vw !important;
+    width:76vw !important;
+    min-width:76vw !important;
+    max-width:76vw !important;
+    scroll-snap-align:start !important;
+  }
+
+  .products > .product img,
+  .collection-scroll > .product img,
+  .naruto-scroll > .product img {
+    aspect-ratio:1 / 1 !important;
+    padding:18px !important;
+    border-radius:16px !important;
+    margin-bottom:13px !important;
+  }
+
+  .products > .product h3,
+  .collection-scroll > .product h3,
+  .naruto-scroll > .product h3 {
+    font-size:16px !important;
+  }
+
+  .products > .product .price,
+  .collection-scroll > .product .price,
+  .naruto-scroll > .product .price {
+    font-size:18px !important;
+  }
+
+  .products > .product .buy,
+  .collection-scroll > .product .buy,
+  .naruto-scroll > .product .buy {
+    min-height:40px !important;
+    padding:10px 17px !important;
+  }
+}
+
+@media (max-width:480px) {
+  .products,
+  .collection-scroll,
+  .naruto-scroll {
+    gap:14px !important;
+    padding-right:18vw !important;
+  }
+
+  .products > .product,
+  .collection-scroll > .product,
+  .naruto-scroll > .product {
+    flex-basis:82vw !important;
+    width:82vw !important;
+    min-width:82vw !important;
+    max-width:82vw !important;
+  }
+
+  .products > .product img,
+  .collection-scroll > .product img,
+  .naruto-scroll > .product img {
+    padding:15px !important;
+  }
+}
+
+/* =========================================================
+   NAV — REAL TOUCH + MOUSE DRAG SCROLL
+   ========================================================= */
+#mainNavigation {
+  width:100% !important;
+  max-width:100vw !important;
+  overflow:hidden !important;
+}
+
+#mainNavigation .navbar-track {
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  justify-content:flex-start !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  gap:8px !important;
+  padding:9px 12px !important;
+  white-space:nowrap !important;
+  scrollbar-width:none !important;
+  -webkit-overflow-scrolling:touch !important;
+  touch-action:pan-x !important;
+  cursor:grab !important;
+}
+
+#mainNavigation .navbar-track::-webkit-scrollbar {
+  display:none !important;
+}
+
+#mainNavigation .navbar-track.dragging {
+  cursor:grabbing !important;
+  user-select:none !important;
+}
+
+#mainNavigation .navbar-track a {
+  flex:0 0 auto !important;
+  white-space:nowrap !important;
+}
+
+/* Make the mobile page feel like a product feed rather than a wall of cards */
+@media(max-width:720px) {
+  .section-title {
+    margin-top:38px !important;
+    margin-bottom:12px !important;
+    font-size:2rem !important;
+  }
+
+  .container {
+    width:calc(100% - 20px) !important;
+    padding-top:18px !important;
+  }
+}
+</style>
+
+
+<style id="ajd-mobile-compact-stockx">
+/* =========================================================
+   COMPACT MOBILE PRODUCT CAROUSELS
+   Smaller StockX-style cards — easier to browse with one hand
+   ========================================================= */
+
+@media (max-width: 720px) {
+
+  .products,
+  .collection-scroll,
+  .naruto-scroll {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 4px 10px 14px !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-left: 10px !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x !important;
+    scrollbar-width: none !important;
+  }
+
+  .products::-webkit-scrollbar,
+  .collection-scroll::-webkit-scrollbar,
+  .naruto-scroll::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Smaller than the previous 82vw cards */
+  .products > .product,
+  .collection-scroll > .product,
+  .naruto-scroll > .product {
+    flex: 0 0 64vw !important;
+    width: 64vw !important;
+    min-width: 64vw !important;
+    max-width: 64vw !important;
+    padding: 10px !important;
+    border-radius: 13px !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    min-height: 0 !important;
+  }
+
+  /* Compact StockX-style image area */
+  .products > .product img,
+  .collection-scroll > .product img,
+  .naruto-scroll > .product img {
+    height: 150px !important;
+    min-height: 150px !important;
+    max-height: 150px !important;
+    width: 100% !important;
+    object-fit: contain !important;
+    border-radius: 10px !important;
+  }
+
+  .products > .product h3,
+  .collection-scroll > .product h3,
+  .naruto-scroll > .product h3 {
+    font-size: .88rem !important;
+    line-height: 1.2 !important;
+    min-height: 0 !important;
+    margin: 8px 0 5px !important;
+  }
+
+  /* Hide long descriptions on phones */
+  .products > .product .product-description,
+  .collection-scroll > .product .product-description,
+  .naruto-scroll > .product .product-description {
+    display: none !important;
+  }
+
+  .products > .product p:not(.price):not(.discount),
+  .collection-scroll > .product p:not(.price):not(.discount),
+  .naruto-scroll > .product p:not(.price):not(.discount) {
+    font-size: .72rem !important;
+  }
+
+  .products > .product .price,
+  .collection-scroll > .product .price,
+  .naruto-scroll > .product .price {
+    font-size: 1.15rem !important;
+    margin: 3px 0 !important;
+  }
+
+  .products > .product .discount,
+  .collection-scroll > .product .discount,
+  .naruto-scroll > .product .discount {
+    font-size: .7rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .products > .product .buy,
+  .collection-scroll > .product .buy,
+  .naruto-scroll > .product .buy {
+    width: 100% !important;
+    min-height: 38px !important;
+    padding: 9px 8px !important;
+    border-radius: 9px !important;
+    font-size: .72rem !important;
+  }
+
+  /* Smaller badges */
+  .products > .product .badge,
+  .collection-scroll > .product .badge,
+  .naruto-scroll > .product .badge {
+    font-size: .58rem !important;
+    padding: 4px 7px !important;
+  }
+
+  /* Subtle swipe cue */
+  .products::after,
+  .collection-scroll::after,
+  .naruto-scroll::after {
+    content: "SWIPE →" !important;
+    flex: 0 0 auto !important;
+    align-self: center !important;
+    color: #777 !important;
+    font-size: .58rem !important;
+    font-weight: 900 !important;
+    letter-spacing: .1em !important;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 390px) {
+
+  .products > .product,
+  .collection-scroll > .product,
+  .naruto-scroll > .product {
+    flex-basis: 67vw !important;
+    width: 67vw !important;
+    min-width: 67vw !important;
+    max-width: 67vw !important;
+  }
+
+  .products > .product img,
+  .collection-scroll > .product img,
+  .naruto-scroll > .product img {
+    height: 135px !important;
+    min-height: 135px !important;
+    max-height: 135px !important;
+  }
+}
+</style>
+
+<style>#cart{scroll-margin-top:90px;}</style>
 </head>
 
 <body>
@@ -1329,8 +1805,8 @@ button.menu-btn,
     <a href="nike-elite.html">Nike Elite</a>
     <a href="jacleats.html">JA Cleats</a>
     <a href="#special">Special</a>
-    <a href="#cart" onclick="event.preventDefault(); if(typeof openCartDrawer==='function') openCartDrawer();">Cart 🛒</a>
-    <a href="#reviews" id="reviewsNavLink">Reviews ⭐</a>
+    <a href="#cart">Cart 🛒</a>
+    <a href="Reviews.html">Reviews ⭐</a>
     <a href="contact.html">Contact</a>
     <a href="shipping.html">Shipping</a>
     <a href="returns.html">Returns</a>
@@ -2724,70 +3200,6 @@ text-align:center;
     .aj-review-card{padding:16px}
   }
 </style>
-<script id="aj-reviews-polish-script">
-document.addEventListener("DOMContentLoaded", function(){
-  const reviews = window.ajdCustomerReviews || (typeof ajdCustomerReviews !== "undefined" ? ajdCustomerReviews : []);
-  if (!reviews.length) return;
-
-  const page = document.querySelector(".reviews-page, #reviews-page, [data-page='reviews'], .ratings-page");
-  if (!page) return;
-
-  // Avoid duplicating the polished section if this script is loaded twice.
-  if (page.querySelector(".aj-review-page")) return;
-
-  const counts = {5:0,4:0,3:0,2:0,1:0};
-  reviews.forEach(r => counts[r.rating] = (counts[r.rating] || 0) + 1);
-  const avg = reviews.reduce((sum,r)=>sum + Number(r.rating || 0),0) / reviews.length;
-
-  const stars = n => "★".repeat(n) + "☆".repeat(5-n);
-  const initials = name => name.replace(/[^A-Za-z ]/g,"").trim().split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase();
-
-  const cards = reviews.map((r,i)=>{
-    const date = new Date(Date.now() - (i * 3 + 7) * 86400000);
-    const dateText = date.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
-    return `
-      <article class="aj-review-card">
-        <div class="aj-review-top">
-          <div class="aj-avatar">${initials(r.name)}</div>
-          <div>
-            <div class="aj-review-name">${r.name}</div>
-            <div class="aj-verified">✓ Verified Purchase</div>
-          </div>
-          <div class="aj-review-date">${dateText}</div>
-        </div>
-        <div class="aj-review-product">${r.product}</div>
-        <div class="aj-stars" aria-label="${r.rating} out of 5 stars">${stars(Number(r.rating))}</div>
-        <p class="aj-review-text">${r.text}</p>
-        <div class="aj-helpful">
-          <span>Was this helpful?</span>
-          <button type="button">👍 Yes</button>
-          <button type="button">👎 No</button>
-        </div>
-      </article>`;
-  }).join("");
-
-  const rows = [5,4,3,2,1].map(n => {
-    const pct = Math.round((counts[n] / reviews.length) * 100);
-    return `<div class="aj-break-row"><b>${n}</b><div class="aj-bar"><span style="width:${pct}%"></span></div><span>${counts[n]}</span></div>`;
-  }).join("");
-
-  page.innerHTML = `
-    <section class="aj-review-page">
-      <div class="aj-review-header">
-        <h1>Customer Ratings</h1>
-        <div class="aj-review-average">
-          <span class="aj-rating-number">${avg.toFixed(1)}</span>
-          <span class="aj-stars">★★★★★</span>
-          <span class="aj-rating-count">${reviews.length} ratings</span>
-        </div>
-        <div class="aj-breakdown">${rows}</div>
-      </div>
-      <div class="aj-review-grid">${cards}</div>
-    </section>`;
-});
-</script>
-
-
 <script id="aj-cart-toast-script">
 (function(){
   let toastTimer;
@@ -2933,88 +3345,54 @@ document.addEventListener("click", function(e){
     <div class="aj-review-grid"></div>
   </div>
 </div>
+<script id="ajd-carousel-drag-script">
+/* Touch works natively. This adds mouse-drag support so the same
+   carousels can be dragged with a mouse on desktop/testing. */
+(function () {
+  const selectors = [
+    '#mainNavigation .navbar-track',
+    '.products',
+    '.collection-scroll',
+    '.naruto-scroll'
+  ];
 
-<script id="aj-review-page-script">
-(function(){
-  function getReviews(){
-    return window.ajdCustomerReviews || [];
-  }
-  function stars(n){ return "★".repeat(n) + "☆".repeat(5-n); }
-  function initials(name){
-    return String(name||"").replace(/[^A-Za-z ]/g,"").trim().split(/\s+/)
-      .map(x=>x[0]).join("").slice(0,2).toUpperCase();
-  }
-  window.openAJReviews = function(){
-    const overlay=document.getElementById("aj-review-overlay");
-    if(!overlay) return;
-    const reviews=getReviews();
-    const counts={1:0,2:0,3:0,4:0,5:0};
-    reviews.forEach(r=>counts[Number(r.rating)]++);
-    const avg=reviews.length ? reviews.reduce((a,r)=>a+Number(r.rating),0)/reviews.length : 0;
-    overlay.querySelector(".rating-number").textContent=avg.toFixed(1);
-    overlay.querySelector(".rating-count").textContent=reviews.length+" ratings";
-    overlay.querySelector(".aj-review-breakdown").innerHTML=[5,4,3,2,1].map(n=>{
-      const pct=reviews.length ? Math.round(counts[n]/reviews.length*100):0;
-      return `<div class="aj-review-row"><b>${n}</b><div class="aj-review-bar"><i style="width:${pct}%"></i></div><span>${counts[n]}</span></div>`;
-    }).join("");
-    overlay.querySelector(".aj-review-grid").innerHTML=reviews.map((r,i)=>{
-      const d=new Date(Date.now()-(i*3+7)*86400000).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
-      return `<article class="aj-review-card">
-        <div class="aj-review-user">
-          <div class="aj-review-avatar">${initials(r.name)}</div>
-          <div><div class="aj-review-name">${r.name}</div><div class="aj-review-verified">✓ Verified Purchase</div></div>
-          <div class="aj-review-date">${d}</div>
-        </div>
-        <div class="aj-review-product">${r.product}</div>
-        <div class="aj-review-stars">${stars(Number(r.rating))}</div>
-        <p class="aj-review-text">${r.text}</p>
-        <div class="aj-review-help"><span>Was this helpful?</span><button>👍 Yes</button><button>👎 No</button></div>
-      </article>`;
-    }).join("");
-    overlay.classList.add("open");
-    overlay.setAttribute("aria-hidden","false");
-    document.body.style.overflow="hidden";
-  };
-  window.closeAJReviews=function(){
-    const overlay=document.getElementById("aj-review-overlay");
-    if(!overlay) return;
-    overlay.classList.remove("open");
-    overlay.setAttribute("aria-hidden","true");
-    document.body.style.overflow="";
-  };
-  document.addEventListener("keydown",e=>{if(e.key==="Escape") window.closeAJReviews();});
-  document.addEventListener("click",function(e){
-    const el=e.target.closest("a,button");
-    if(!el) return;
-    const label=(el.textContent||"").trim().toLowerCase();
-    const href=(el.getAttribute("href")||"").toLowerCase();
-    if(label.includes("review") || label.includes("rating") || href.includes("review") || href.includes("rating")){
-      e.preventDefault(); e.stopPropagation(); window.openAJReviews();
-    }
-  },true);
-})();
-</script>
+  selectors.forEach(function (selector) {
+    document.querySelectorAll(selector).forEach(function (slider) {
+      let isDown = false;
+      let startX = 0;
+      let startScroll = 0;
+      let moved = false;
 
-<script src="customer-ratings.js"></script>
+      slider.addEventListener('mousedown', function (e) {
+        isDown = true;
+        moved = false;
+        startX = e.pageX;
+        startScroll = slider.scrollLeft;
+        slider.classList.add('dragging');
+      });
 
-<script id="aj-reviews-nav-final">
-document.addEventListener("DOMContentLoaded", function(){
-  const link = document.getElementById("reviewsNavLink");
-  if(!link) return;
-  link.addEventListener("click", function(e){
-    e.preventDefault();
-    if(typeof window.openAJReviews === "function"){
-      window.openAJReviews();
-    } else {
-      const overlay = document.getElementById("aj-review-overlay");
-      if(overlay) {
-        overlay.classList.add("open");
-        overlay.setAttribute("aria-hidden","false");
-        document.body.style.overflow="hidden";
-      }
-    }
+      window.addEventListener('mousemove', function (e) {
+        if (!isDown) return;
+        const distance = e.pageX - startX;
+        if (Math.abs(distance) > 4) moved = true;
+        slider.scrollLeft = startScroll - distance;
+      });
+
+      window.addEventListener('mouseup', function () {
+        isDown = false;
+        slider.classList.remove('dragging');
+      });
+
+      slider.addEventListener('click', function (e) {
+        if (moved) {
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+        }
+      }, true);
+    });
   });
-});
+})();
 </script>
 
 </body>

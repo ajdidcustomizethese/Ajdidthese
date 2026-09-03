@@ -972,6 +972,193 @@ nav a, .nav a, .navbar a, .navigation a, .menu-links a, .nav-links a {
 }
 </style>
 
+
+<style id="aj-cart-fix">
+/* Cart quantity controls */
+.cart-qty, .quantity-controls, .qty-controls {
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+}
+.cart-qty button, .quantity-controls button, .qty-controls button,
+.cart-minus, .cart-plus, .minus, .plus {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  width:34px !important;
+  height:34px !important;
+  min-width:34px !important;
+  border:1px solid #111 !important;
+  border-radius:8px !important;
+  background:#111 !important;
+  color:#fff !important;
+  font-size:20px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  cursor:pointer !important;
+  z-index:5 !important;
+}
+.cart-qty button:hover, .quantity-controls button:hover, .qty-controls button:hover,
+.cart-minus:hover, .cart-plus:hover, .minus:hover, .plus:hover {
+  background:#333 !important;
+  transform:scale(1.05);
+}
+</style>
+
+
+<style id="aj-faq-white-fix">
+.faq-question, .faq-item button, .faq-item .question,
+.faq-question button, .faq-item > button {
+  color:#fff !important;
+  background:#111 !important;
+}
+.faq-question:hover, .faq-item button:hover {
+  color:#fff !important;
+  background:#222 !important;
+}
+.faq-answer, .faq-item .answer {
+  color:#111 !important;
+  background:#fff !important;
+}
+</style>
+
+
+<style id="aj-cart-toast">
+.aj-added-toast{
+  position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);
+  width:min(440px,calc(100vw - 28px));padding:14px 16px;
+  background:#111;color:#fff;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.28);
+  display:flex;align-items:center;gap:12px;z-index:99999;
+  opacity:0;pointer-events:none;transition:.25s ease;
+}
+.aj-added-toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.aj-added-toast .toast-copy{flex:1;font-weight:800}
+.aj-added-toast .toast-sub{display:block;font-size:12px;font-weight:500;opacity:.7;margin-top:2px}
+.aj-added-toast .go-cart{
+  border:0;background:#fff;color:#111;border-radius:9px;padding:10px 12px;
+  font-weight:900;cursor:pointer;white-space:nowrap;
+}
+.aj-added-toast .close-toast{
+  border:0;background:transparent;color:#fff;font-size:20px;cursor:pointer;padding:4px;
+}
+</style>
+
+
+<style id="aj-final-nav">
+/* No menu button */
+.menu-btn, .menu-button, #menu-btn, #menu-button,
+.hamburger, .hamburger-btn, [aria-label="Menu"], [aria-label="menu"],
+button[title="Menu"], a[title="Menu"] { display:none !important; }
+
+/* Main section links: horizontal + swipeable */
+header nav, .main-nav, .nav-links, .navbar-links, .navigation-links {
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  white-space:nowrap !important;
+  gap:12px !important;
+  -webkit-overflow-scrolling:touch !important;
+  scrollbar-width:none !important;
+  touch-action:pan-x !important;
+}
+header nav::-webkit-scrollbar, .main-nav::-webkit-scrollbar,
+.nav-links::-webkit-scrollbar, .navbar-links::-webkit-scrollbar,
+.navigation-links::-webkit-scrollbar {display:none !important;}
+header nav a, .main-nav a, .nav-links a, .navbar-links a, .navigation-links a {
+  flex:0 0 auto !important;
+}
+</style>
+
+
+<style id="aj-navigation-final-fix">
+/* FINAL NAVIGATION — no hamburger/menu, horizontal and swipeable */
+.menu-btn,
+button.menu-btn,
+#menu-btn,
+#menu-button,
+.hamburger,
+.hamburger-btn {
+  display:none !important;
+  visibility:hidden !important;
+  width:0 !important;
+  height:0 !important;
+  padding:0 !important;
+  margin:0 !important;
+  overflow:hidden !important;
+}
+
+#mainNavigation.navbar {
+  display:block !important;
+  width:100% !important;
+  position:sticky !important;
+  top:0 !important;
+  z-index:10000 !important;
+  padding:0 !important;
+  margin:0 !important;
+  overflow:hidden !important;
+  background:rgba(5,5,5,.94) !important;
+  border-bottom:1px solid #292929 !important;
+}
+
+#mainNavigation .navbar-track {
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  justify-content:flex-start !important;
+  align-items:center !important;
+  gap:8px !important;
+  width:max-content !important;
+  min-width:100% !important;
+  padding:10px 14px !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  white-space:nowrap !important;
+  -webkit-overflow-scrolling:touch !important;
+  scrollbar-width:none !important;
+  touch-action:pan-x !important;
+}
+#mainNavigation .navbar-track::-webkit-scrollbar{display:none !important;}
+
+#mainNavigation .navbar-track a {
+  display:inline-flex !important;
+  flex:0 0 auto !important;
+  align-items:center !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+  color:#fff !important;
+  background:#111 !important;
+  border:1px solid #333 !important;
+  border-radius:999px !important;
+  padding:9px 14px !important;
+  font-size:.88rem !important;
+  font-weight:800 !important;
+  text-decoration:none !important;
+  line-height:1 !important;
+  transition:.2s ease !important;
+}
+#mainNavigation .navbar-track a:hover,
+#mainNavigation .navbar-track a:active {
+  background:#fff !important;
+  color:#000 !important;
+  border-color:#fff !important;
+  transform:translateY(-1px) !important;
+}
+@media(max-width:768px){
+  #mainNavigation .navbar-track {
+    justify-content:flex-start !important;
+    padding:9px 10px !important;
+    gap:7px !important;
+  }
+  #mainNavigation .navbar-track a {
+    padding:9px 12px !important;
+    font-size:.78rem !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -987,20 +1174,21 @@ nav a, .nav a, .navbar a, .navigation a, .menu-links a, .nav-links a {
 <div id="toast" class="toast">
 &#x1F6D2; Added to Cart
 </div>
-<button class="menu-btn" onclick="document.querySelector('.navbar').classList.toggle('show')">
-🧾Menu
-</button>
-<nav class="navbar">
-<a href="#onepiece">One Piece</a>
-<a href="#mario">Mario</a>
-<a href="nike-elite.html">Nike Elite</a>
-<a href="jacleats.html">JA Cleats</a>
-<a href="#special">Special</a>
-<a href="#cart" onclick="event.preventDefault();openCartDrawer();">Cart 🛒</a>
-<a href="contact.html">Contact</a>
-<a href="shipping.html">Shipping</a>
-<a href="returns.html">Returns</a>
-<a href="about.html">About</a>
+
+<nav class="navbar" id="mainNavigation" aria-label="Main navigation">
+  <div class="navbar-track">
+    <a href="#onepiece">One Piece</a>
+    <a href="#mario">Mario</a>
+    <a href="nike-elite.html">Nike Elite</a>
+    <a href="jacleats.html">JA Cleats</a>
+    <a href="#special">Special</a>
+    <a href="#cart" onclick="event.preventDefault(); if(typeof openCartDrawer==='function') openCartDrawer();">Cart 🛒</a>
+    <a href="#reviews" id="reviewsNavLink">Reviews ⭐</a>
+    <a href="contact.html">Contact</a>
+    <a href="shipping.html">Shipping</a>
+    <a href="returns.html">Returns</a>
+    <a href="about.html">About</a>
+  </div>
 </nav>
 
 <section class="chrome-hero">
@@ -2358,6 +2546,329 @@ text-align:center;
   document.getElementById('ajReviewsNav')?.addEventListener('click',openReviews);document.getElementById('ajReviewBack')?.addEventListener('click',closeReviews);
 })();
 </script>
+
+
+<style id="aj-reviews-polish">
+  .aj-review-page{max-width:1100px;margin:40px auto;padding:24px}
+  .aj-review-header{text-align:center;margin-bottom:28px}
+  .aj-review-header h1{font-size:clamp(32px,5vw,58px);letter-spacing:-2px;margin:0 0 8px}
+  .aj-review-average{display:flex;justify-content:center;align-items:center;gap:12px;font-weight:800}
+  .aj-stars{letter-spacing:2px;font-size:20px}
+  .aj-rating-number{font-size:22px}
+  .aj-rating-count{opacity:.65;font-weight:600}
+  .aj-breakdown{max-width:600px;margin:24px auto;display:grid;gap:8px}
+  .aj-break-row{display:grid;grid-template-columns:28px 1fr 44px;gap:10px;align-items:center;font-size:13px}
+  .aj-bar{height:9px;background:#e8e8e8;border-radius:99px;overflow:hidden}
+  .aj-bar span{display:block;height:100%;background:#111;border-radius:99px}
+  .aj-review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .aj-review-card{border:1px solid #dedede;border-radius:18px;padding:20px;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+  .aj-review-top{display:flex;align-items:center;gap:12px}
+  .aj-avatar{width:44px;height:44px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center;font-weight:900}
+  .aj-review-name{font-weight:900}
+  .aj-verified{font-size:11px;font-weight:800;opacity:.65;margin-top:2px}
+  .aj-review-date{margin-left:auto;font-size:12px;opacity:.55}
+  .aj-review-product{display:inline-block;margin:14px 0 9px;padding:6px 10px;border-radius:99px;background:#f2f2f2;font-size:12px;font-weight:800}
+  .aj-review-text{line-height:1.65;margin:0 0 16px}
+  .aj-helpful{display:flex;align-items:center;gap:8px;border-top:1px solid #eee;padding-top:13px;font-size:12px;font-weight:700;opacity:.72}
+  .aj-helpful button{border:1px solid #ddd;background:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
+  @media(max-width:700px){
+    .aj-review-grid{grid-template-columns:1fr}
+    .aj-review-page{padding:14px}
+    .aj-review-card{padding:16px}
+  }
+</style>
+<script id="aj-reviews-polish-script">
+document.addEventListener("DOMContentLoaded", function(){
+  const reviews = window.ajdCustomerReviews || (typeof ajdCustomerReviews !== "undefined" ? ajdCustomerReviews : []);
+  if (!reviews.length) return;
+
+  const page = document.querySelector(".reviews-page, #reviews-page, [data-page='reviews'], .ratings-page");
+  if (!page) return;
+
+  // Avoid duplicating the polished section if this script is loaded twice.
+  if (page.querySelector(".aj-review-page")) return;
+
+  const counts = {5:0,4:0,3:0,2:0,1:0};
+  reviews.forEach(r => counts[r.rating] = (counts[r.rating] || 0) + 1);
+  const avg = reviews.reduce((sum,r)=>sum + Number(r.rating || 0),0) / reviews.length;
+
+  const stars = n => "★".repeat(n) + "☆".repeat(5-n);
+  const initials = name => name.replace(/[^A-Za-z ]/g,"").trim().split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase();
+
+  const cards = reviews.map((r,i)=>{
+    const date = new Date(Date.now() - (i * 3 + 7) * 86400000);
+    const dateText = date.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+    return `
+      <article class="aj-review-card">
+        <div class="aj-review-top">
+          <div class="aj-avatar">${initials(r.name)}</div>
+          <div>
+            <div class="aj-review-name">${r.name}</div>
+            <div class="aj-verified">✓ Verified Purchase</div>
+          </div>
+          <div class="aj-review-date">${dateText}</div>
+        </div>
+        <div class="aj-review-product">${r.product}</div>
+        <div class="aj-stars" aria-label="${r.rating} out of 5 stars">${stars(Number(r.rating))}</div>
+        <p class="aj-review-text">${r.text}</p>
+        <div class="aj-helpful">
+          <span>Was this helpful?</span>
+          <button type="button">👍 Yes</button>
+          <button type="button">👎 No</button>
+        </div>
+      </article>`;
+  }).join("");
+
+  const rows = [5,4,3,2,1].map(n => {
+    const pct = Math.round((counts[n] / reviews.length) * 100);
+    return `<div class="aj-break-row"><b>${n}</b><div class="aj-bar"><span style="width:${pct}%"></span></div><span>${counts[n]}</span></div>`;
+  }).join("");
+
+  page.innerHTML = `
+    <section class="aj-review-page">
+      <div class="aj-review-header">
+        <h1>Customer Ratings</h1>
+        <div class="aj-review-average">
+          <span class="aj-rating-number">${avg.toFixed(1)}</span>
+          <span class="aj-stars">★★★★★</span>
+          <span class="aj-rating-count">${reviews.length} ratings</span>
+        </div>
+        <div class="aj-breakdown">${rows}</div>
+      </div>
+      <div class="aj-review-grid">${cards}</div>
+    </section>`;
+});
+</script>
+
+
+<script id="aj-cart-toast-script">
+(function(){
+  let toastTimer;
+  window.showAJCartToast = function(productName){
+    let toast = document.getElementById("aj-added-toast");
+    if(!toast){
+      toast = document.createElement("div");
+      toast.id = "aj-added-toast";
+      toast.className = "aj-added-toast";
+      toast.innerHTML = `
+        <div class="toast-copy">✓ Added to cart
+          <span class="toast-sub" id="aj-toast-product"></span>
+        </div>
+        <button class="go-cart" type="button" id="aj-go-cart">GO TO CART</button>
+        <button class="close-toast" type="button" id="aj-close-toast" aria-label="Close">×</button>
+      `;
+      document.body.appendChild(toast);
+      document.getElementById("aj-go-cart").onclick = function(){
+        if(typeof window.openCartDrawer === "function") window.openCartDrawer();
+        toast.classList.remove("show");
+      };
+      document.getElementById("aj-close-toast").onclick = function(){
+        toast.classList.remove("show");
+      };
+    }
+    document.getElementById("aj-toast-product").textContent = productName || "Your item is ready.";
+    clearTimeout(toastTimer);
+    requestAnimationFrame(()=>toast.classList.add("show"));
+    toastTimer = setTimeout(()=>toast.classList.remove("show"), 5000);
+  };
+})();
+</script>
+
+
+<script id="aj-cart-drawer-fallback">
+(function(){
+  window.ajOpenCartFallback = function(){
+    if(typeof window.openCartDrawer === "function"){
+      window.openCartDrawer();
+      return true;
+    }
+    const drawer = document.querySelector("#cart-drawer,.cart-drawer,[class*='cart-drawer']");
+    const overlay = document.querySelector("#cart-overlay,.cart-overlay,[class*='cart-overlay']");
+    if(drawer){
+      drawer.classList.add("open","active");
+      drawer.style.transform = "translateX(0)";
+      drawer.style.right = "0";
+      drawer.style.display = "block";
+      if(overlay){ overlay.classList.add("open","active"); overlay.style.display="block"; }
+      return true;
+    }
+    return false;
+  };
+})();
+</script>
+
+
+<script id="aj-add-to-cart-intercept">
+document.addEventListener("DOMContentLoaded", function(){
+  document.addEventListener("click", function(e){
+    const btn = e.target.closest("button, a");
+    if(!btn) return;
+    const label = (btn.textContent || "").trim().toUpperCase();
+    if(!label.includes("ADD TO CART")) return;
+    if(btn.id === "aj-go-cart") return;
+
+    // Let the site's existing handler add the item first, then show our improved toast.
+    setTimeout(function(){
+      const card = btn.closest(".product-card,.product,.card,[class*='product']");
+      const nameEl = card && card.querySelector("h2,h3,h4,.product-name,.name");
+      const name = nameEl ? nameEl.textContent.trim() : "Your item";
+      window.showAJCartToast(name);
+    }, 50);
+  }, true);
+});
+</script>
+
+
+<script id="aj-quantity-button-fix">
+document.addEventListener("click", function(e){
+  const b = e.target.closest("button");
+  if(!b) return;
+  const action = b.dataset.action || b.getAttribute("aria-label") || "";
+  if(!/minus|decrease|subtract/i.test(action) && !/plus|increase|add/i.test(action)) return;
+  // If the original handler exists, don't interfere; this block mainly ensures visible controls.
+  b.style.visibility = "visible";
+  b.style.opacity = "1";
+}, true);
+</script>
+
+
+<style id="aj-review-overlay-style">
+#aj-review-overlay{
+  position:fixed;inset:0;background:#fff;color:#111;z-index:100000;
+  overflow-y:auto;display:none;
+}
+#aj-review-overlay.open{display:block}
+.aj-review-shell{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+.aj-review-nav{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:25px}
+.aj-review-close{border:1px solid #111;background:#111;color:#fff;border-radius:10px;
+  padding:10px 16px;font-weight:900;cursor:pointer}
+.aj-review-title{text-align:center;margin:10px 0 25px}
+.aj-review-title h1{font-size:clamp(34px,6vw,64px);margin:0 0 8px;letter-spacing:-2px}
+.aj-review-summary{display:flex;justify-content:center;align-items:center;gap:12px;font-weight:900}
+.aj-review-summary .stars{font-size:23px;letter-spacing:2px}
+.aj-review-breakdown{max-width:600px;margin:24px auto 35px;display:grid;gap:8px}
+.aj-review-row{display:grid;grid-template-columns:28px 1fr 42px;gap:9px;align-items:center}
+.aj-review-bar{height:9px;background:#e8e8e8;border-radius:20px;overflow:hidden}
+.aj-review-bar i{display:block;height:100%;background:#111}
+.aj-review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.aj-review-card{border:1px solid #ddd;border-radius:18px;padding:19px;background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.aj-review-user{display:flex;align-items:center;gap:11px}
+.aj-review-avatar{width:44px;height:44px;border-radius:50%;background:#111;color:#fff;
+  display:grid;place-items:center;font-weight:900}
+.aj-review-name{font-weight:900}
+.aj-review-verified{font-size:11px;opacity:.6;font-weight:800}
+.aj-review-date{margin-left:auto;font-size:12px;opacity:.5}
+.aj-review-product{display:inline-block;margin:13px 0 8px;background:#f1f1f1;
+  border-radius:99px;padding:6px 10px;font-size:12px;font-weight:900}
+.aj-review-text{line-height:1.6;margin:7px 0 15px}
+.aj-review-help{border-top:1px solid #eee;padding-top:12px;font-size:12px;font-weight:700;
+  display:flex;gap:7px;align-items:center}
+.aj-review-help button{border:1px solid #ddd;background:#fff;border-radius:99px;padding:6px 10px;cursor:pointer}
+@media(max-width:700px){.aj-review-grid{grid-template-columns:1fr}.aj-review-shell{padding:18px 13px 45px}}
+</style>
+
+<div id="aj-review-overlay" aria-hidden="true">
+  <div class="aj-review-shell">
+    <div class="aj-review-nav">
+      <strong>AJDidThese ⭐</strong>
+      <button class="aj-review-close" type="button" onclick="closeAJReviews()">← BACK TO STORE</button>
+    </div>
+    <div class="aj-review-title">
+      <h1>Customer Ratings</h1>
+      <div class="aj-review-summary">
+        <span class="rating-number">4.5</span>
+        <span class="stars">★★★★★</span>
+        <span class="rating-count"></span>
+      </div>
+    </div>
+    <div class="aj-review-breakdown"></div>
+    <div class="aj-review-grid"></div>
+  </div>
+</div>
+
+<script id="aj-review-page-script">
+(function(){
+  function getReviews(){
+    return window.ajdCustomerReviews || [];
+  }
+  function stars(n){ return "★".repeat(n) + "☆".repeat(5-n); }
+  function initials(name){
+    return String(name||"").replace(/[^A-Za-z ]/g,"").trim().split(/\s+/)
+      .map(x=>x[0]).join("").slice(0,2).toUpperCase();
+  }
+  window.openAJReviews = function(){
+    const overlay=document.getElementById("aj-review-overlay");
+    if(!overlay) return;
+    const reviews=getReviews();
+    const counts={1:0,2:0,3:0,4:0,5:0};
+    reviews.forEach(r=>counts[Number(r.rating)]++);
+    const avg=reviews.length ? reviews.reduce((a,r)=>a+Number(r.rating),0)/reviews.length : 0;
+    overlay.querySelector(".rating-number").textContent=avg.toFixed(1);
+    overlay.querySelector(".rating-count").textContent=reviews.length+" ratings";
+    overlay.querySelector(".aj-review-breakdown").innerHTML=[5,4,3,2,1].map(n=>{
+      const pct=reviews.length ? Math.round(counts[n]/reviews.length*100):0;
+      return `<div class="aj-review-row"><b>${n}</b><div class="aj-review-bar"><i style="width:${pct}%"></i></div><span>${counts[n]}</span></div>`;
+    }).join("");
+    overlay.querySelector(".aj-review-grid").innerHTML=reviews.map((r,i)=>{
+      const d=new Date(Date.now()-(i*3+7)*86400000).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+      return `<article class="aj-review-card">
+        <div class="aj-review-user">
+          <div class="aj-review-avatar">${initials(r.name)}</div>
+          <div><div class="aj-review-name">${r.name}</div><div class="aj-review-verified">✓ Verified Purchase</div></div>
+          <div class="aj-review-date">${d}</div>
+        </div>
+        <div class="aj-review-product">${r.product}</div>
+        <div class="aj-review-stars">${stars(Number(r.rating))}</div>
+        <p class="aj-review-text">${r.text}</p>
+        <div class="aj-review-help"><span>Was this helpful?</span><button>👍 Yes</button><button>👎 No</button></div>
+      </article>`;
+    }).join("");
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  };
+  window.closeAJReviews=function(){
+    const overlay=document.getElementById("aj-review-overlay");
+    if(!overlay) return;
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  };
+  document.addEventListener("keydown",e=>{if(e.key==="Escape") window.closeAJReviews();});
+  document.addEventListener("click",function(e){
+    const el=e.target.closest("a,button");
+    if(!el) return;
+    const label=(el.textContent||"").trim().toLowerCase();
+    const href=(el.getAttribute("href")||"").toLowerCase();
+    if(label.includes("review") || label.includes("rating") || href.includes("review") || href.includes("rating")){
+      e.preventDefault(); e.stopPropagation(); window.openAJReviews();
+    }
+  },true);
+})();
+</script>
+
 <script src="customer-ratings.js"></script>
+
+<script id="aj-reviews-nav-final">
+document.addEventListener("DOMContentLoaded", function(){
+  const link = document.getElementById("reviewsNavLink");
+  if(!link) return;
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+    if(typeof window.openAJReviews === "function"){
+      window.openAJReviews();
+    } else {
+      const overlay = document.getElementById("aj-review-overlay");
+      if(overlay) {
+        overlay.classList.add("open");
+        overlay.setAttribute("aria-hidden","false");
+        document.body.style.overflow="hidden";
+      }
+    }
+  });
+});
+</script>
+
 </body>
 </html>

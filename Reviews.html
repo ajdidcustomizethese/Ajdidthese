@@ -1,597 +1,1321 @@
-<!-- ==================== AJDIDTHESE REVIEWS ==================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AJDidThese | Customer Ratings</title>
 
 <style>
-  .ajd-reviews-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.88);
-    z-index: 99999;
-    overflow-y: auto;
-    padding: 30px 16px;
-    display: none;
-  }
+/* =========================================================
+   AJDIDTHESE CUSTOMER RATINGS
+   COMPLETE ONE-FILE VERSION
+   ========================================================= */
 
-  .ajd-reviews-overlay.active {
-    display: block;
-  }
+* {
+    box-sizing: border-box;
+}
 
-  .ajd-reviews-page {
-    max-width: 1100px;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= TOP BAR ================= */
+
+.topbar {
+    height: 72px;
+    background: #0b0b0b;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.brand span {
+    color: #f2c94c;
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+
+    border: 1px solid white;
+    border-radius: 8px;
+
+    padding: 11px 16px;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    transition: 0.2s ease;
+}
+
+.back-button:hover {
+    background: white;
+    color: black;
+}
+
+/* ================= MAIN ================= */
+
+.container {
+    width: min(1120px, 92%);
     margin: auto;
-    background: #fff;
-    color: #000;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 25px 80px rgba(0,0,0,.5);
-  }
 
-  .ajd-reviews-header {
-    background: #000;
-    color: #fff;
-    padding: 35px 25px;
+    padding: 50px 0 80px;
+}
+
+/* ================= HEADER ================= */
+
+.hero {
     text-align: center;
-    position: relative;
-  }
+    margin-bottom: 40px;
+}
 
-  .ajd-reviews-header h1 {
-    margin: 0;
-    font-size: 38px;
+.kicker {
+    font-size: 12px;
     font-weight: 900;
-    letter-spacing: -1px;
-  }
-
-  .ajd-reviews-header p {
-    margin: 8px 0 0;
-    color: #ccc;
-    font-size: 15px;
-  }
-
-  .ajd-reviews-close {
-    position: absolute;
-    right: 20px;
-    top: 18px;
-    width: 42px;
-    height: 42px;
-    border: 1px solid #555;
-    border-radius: 50%;
-    background: #111;
-    color: #fff;
-    font-size: 22px;
-    cursor: pointer;
-  }
-
-  .ajd-rating-summary {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 35px;
-    padding: 35px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .ajd-rating-big {
-    text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 18px;
-    padding: 25px;
-  }
-
-  .ajd-rating-number {
-    font-size: 62px;
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .ajd-stars {
-    font-size: 23px;
     letter-spacing: 2px;
-    margin: 8px 0;
-  }
 
-  .ajd-rating-count {
-    color: #666;
-    font-size: 14px;
-  }
+    margin-bottom: 12px;
+}
 
-  .ajd-breakdown {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .ajd-rating-row {
-    display: grid;
-    grid-template-columns: 45px 1fr 45px;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-  }
-
-  .ajd-rating-bar {
-    height: 9px;
-    background: #e5e5e5;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-
-  .ajd-rating-fill {
-    height: 100%;
-    background: #000;
-    border-radius: 20px;
-  }
-
-  .ajd-review-controls {
-    padding: 22px 35px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .ajd-review-controls h2 {
+.hero h1 {
     margin: 0;
-    font-size: 24px;
-  }
 
-  .ajd-review-filter {
-    border: 1px solid #111;
-    background: #fff;
-    color: #000;
-    padding: 10px 14px;
-    border-radius: 9px;
-    font-weight: 700;
-    cursor: pointer;
-  }
+    font-size: clamp(38px, 6vw, 64px);
 
-  .ajd-review-grid {
-    padding: 35px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-  }
+    letter-spacing: -3px;
+    line-height: 1;
+}
 
-  .ajd-review-card {
-    border: 1px solid #ddd;
-    border-radius: 17px;
-    padding: 22px;
-    transition: .2s ease;
-    background: #fff;
-  }
+.subtitle {
+    max-width: 650px;
 
-  .ajd-review-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  }
+    margin: 15px auto 0;
 
-  .ajd-review-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
+    color: #666;
 
-  .ajd-review-user {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .ajd-avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #000;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-  }
-
-  .ajd-review-name {
-    font-weight: 800;
-  }
-
-  .ajd-review-date {
-    color: #777;
-    font-size: 12px;
-    margin-top: 2px;
-  }
-
-  .ajd-review-stars {
-    font-size: 17px;
-    white-space: nowrap;
-  }
-
-  .ajd-review-product {
-    display: inline-block;
-    margin-top: 16px;
-    padding: 6px 10px;
-    background: #f1f1f1;
-    border-radius: 7px;
-    font-size: 12px;
-    font-weight: 800;
-  }
-
-  .ajd-review-text {
-    margin: 15px 0 0;
     font-size: 15px;
     line-height: 1.6;
-    color: #222;
-  }
+}
 
-  .ajd-verified {
-    display: inline-flex;
+/* ================= RATING BOX ================= */
+
+.rating-overview {
+    background: #0b0b0b;
+    color: white;
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: 30px;
+
     align-items: center;
-    gap: 5px;
-    margin-top: 15px;
-    font-size: 12px;
+
+    margin-bottom: 45px;
+}
+
+.big-rating {
+    text-align: center;
+
+    border-right: 1px solid #333;
+
+    padding-right: 30px;
+}
+
+.big-number {
+    font-size: 60px;
+
+    line-height: 1;
+
+    font-weight: 950;
+}
+
+.big-stars {
+    font-size: 24px;
+
+    letter-spacing: 2px;
+
+    margin: 10px 0 5px;
+}
+
+.rating-count {
+    color: #bcbcbc;
+
+    font-size: 14px;
+}
+
+/* ================= BREAKDOWN ================= */
+
+.breakdown {
+    display: grid;
+
+    gap: 12px;
+}
+
+.bar-row {
+    display: grid;
+
+    grid-template-columns: 25px 1fr 35px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 13px;
+
     font-weight: 800;
-  }
+}
 
-  .ajd-review-footer {
-    margin-top: 15px;
-    padding-top: 13px;
-    border-top: 1px solid #eee;
-    color: #777;
+.rating-bar {
+    height: 8px;
+
+    background: #333;
+
+    border-radius: 100px;
+
+    overflow: hidden;
+}
+
+.rating-fill {
+    height: 100%;
+
+    background: white;
+
+    border-radius: 100px;
+
+    transition: width 0.5s ease;
+}
+
+/* ================= REVIEWS HEADER ================= */
+
+.review-controls {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+.review-controls h2 {
+    margin: 0;
+
+    font-size: 27px;
+}
+
+/* ================= FILTERS ================= */
+
+.filters {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.filter-button {
+    border: 1px solid #d0d0d0;
+
+    background: white;
+
+    color: black;
+
+    padding: 9px 14px;
+
+    border-radius: 999px;
+
     font-size: 12px;
-  }
 
-  @media(max-width:700px) {
-    .ajd-reviews-overlay {
-      padding: 0;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.filter-button:hover,
+.filter-button.active {
+    background: black;
+
+    color: white;
+
+    border-color: black;
+}
+
+/* ================= REVIEW GRID ================= */
+
+.review-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+/* ================= REVIEW CARD ================= */
+
+.review-card {
+    background: white;
+
+    border: 1px solid #dedede;
+
+    border-radius: 17px;
+
+    padding: 21px;
+
+    transition: 0.25s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.review-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.person {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.avatar {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: black;
+
+    color: white;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    flex-shrink: 0;
+}
+
+.name {
+    font-size: 14px;
+
+    font-weight: 900;
+}
+
+.customer-label {
+    color: #777;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-top: 3px;
+}
+
+.review-date {
+    color: #888;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+/* ================= STARS ================= */
+
+.review-stars {
+    margin: 16px 0 10px;
+
+    font-size: 17px;
+
+    letter-spacing: 1px;
+}
+
+/* ================= REVIEW TEXT ================= */
+
+.review-text {
+    margin: 0 0 18px;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+    color: #222;
+}
+
+/* ================= PRODUCT TAG ================= */
+
+.product-tag {
+    display: inline-block;
+
+    background: #f5f5f5;
+
+    border: 1px solid #ddd;
+
+    border-radius: 999px;
+
+    padding: 7px 10px;
+
+    font-size: 11px;
+
+    font-weight: 900;
+}
+
+/* ================= EMPTY ================= */
+
+.empty-reviews {
+    border: 1px dashed #ccc;
+
+    border-radius: 17px;
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #777;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    text-align: center;
+
+    color: #888;
+
+    font-size: 12px;
+
+    border-top: 1px solid #eee;
+
+    padding-top: 25px;
+
+    margin-top: 60px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    .topbar {
+        height: 62px;
+
+        padding: 0 4%;
     }
 
-    .ajd-reviews-page {
-      min-height: 100vh;
-      border-radius: 0;
+    .brand {
+        font-size: 17px;
     }
 
-    .ajd-reviews-header h1 {
-      font-size: 30px;
+    .back-button {
+        font-size: 10px;
+
+        padding: 9px 11px;
     }
 
-    .ajd-rating-summary {
-      grid-template-columns: 1fr;
-      padding: 22px;
+    .container {
+        width: 94%;
+
+        padding-top: 35px;
     }
 
-    .ajd-review-controls {
-      padding: 18px 22px;
-      align-items: flex-start;
-      flex-direction: column;
+    .hero h1 {
+        font-size: 42px;
+
+        letter-spacing: -2px;
     }
 
-    .ajd-review-grid {
-      padding: 22px;
-      grid-template-columns: 1fr;
+    .subtitle {
+        font-size: 13px;
     }
-  }
+
+    .rating-overview {
+        grid-template-columns: 1fr;
+
+        padding: 23px;
+
+        gap: 25px;
+    }
+
+    .big-rating {
+        border-right: none;
+
+        border-bottom: 1px solid #333;
+
+        padding-right: 0;
+
+        padding-bottom: 25px;
+    }
+
+    .big-number {
+        font-size: 54px;
+    }
+
+    .review-controls {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .review-controls h2 {
+        font-size: 23px;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-card {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .topbar {
+        padding: 0 12px;
+    }
+
+    .brand {
+        font-size: 15px;
+    }
+
+    .back-button {
+        padding: 8px 9px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .rating-overview {
+        border-radius: 17px;
+    }
+
+    .big-number {
+        font-size: 48px;
+    }
+
+    .review-top {
+        align-items: flex-start;
+    }
+
+    .review-date {
+        font-size: 10px;
+    }
+}
 </style>
+</head>
 
-<div class="ajd-reviews-overlay" id="ajdReviewsOverlay">
+<body>
 
-  <div class="ajd-reviews-page">
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
 
-    <div class="ajd-reviews-header">
-      <button class="ajd-reviews-close" onclick="closeAJReviews()">×</button>
+<header class="topbar">
 
-      <h1>CUSTOMER FEEDBACK ⭐</h1>
-      <p>What People Are Saying About AJDidThese</p>
+    <div class="brand">
+        AJDidThese <span>★</span>
     </div>
 
-    <div class="ajd-rating-summary">
+    <a href="index.html" class="back-button">
+        ← BACK TO STORE
+    </a>
 
-      <div class="ajd-rating-big">
-        <div class="ajd-rating-number">4.5</div>
-        <div class="ajd-stars">★★★★★</div>
-        <div class="ajd-rating-count">100 ratings</div>
-      </div>
+</header>
 
-      <div class="ajd-breakdown">
 
-        <div class="ajd-rating-row">
-          <span>5 ★</span>
-          <div class="ajd-rating-bar">
-            <div class="ajd-rating-fill" style="width:50%"></div>
-          </div>
-          <span>50</span>
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
+
+<main class="container">
+
+
+    <!-- HEADER -->
+
+    <section class="hero">
+
+        <div class="kicker">
+            AJDIDTHESE • CUSTOMER FEEDBACK
         </div>
 
-        <div class="ajd-rating-row">
-          <span>4 ★</span>
-          <div class="ajd-rating-bar">
-            <div class="ajd-rating-fill" style="width:50%"></div>
-          </div>
-          <span>50</span>
+        <h1>
+            Customer Ratings
+        </h1>
+
+        <p class="subtitle">
+            See what people are saying about the custom sneaker collection.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         RATING OVERVIEW
+         ===================================================== -->
+
+    <section class="rating-overview">
+
+        <div class="big-rating">
+
+            <div
+                class="big-number"
+                id="averageRating">
+                4.5
+            </div>
+
+            <div
+                class="big-stars"
+                id="averageStars">
+                ★★★★★
+            </div>
+
+            <div class="rating-count">
+
+                <span id="ratingCount">
+                    100
+                </span>
+
+                ratings
+
+            </div>
+
         </div>
 
-        <div class="ajd-rating-row">
-          <span>3 ★</span>
-          <div class="ajd-rating-bar">
-            <div class="ajd-rating-fill" style="width:0%"></div>
-          </div>
-          <span>0</span>
+
+        <div
+            class="breakdown"
+            id="ratingBreakdown">
+
         </div>
 
-        <div class="ajd-rating-row">
-          <span>2 ★</span>
-          <div class="ajd-rating-bar">
-            <div class="ajd-rating-fill" style="width:0%"></div>
-          </div>
-          <span>0</span>
+    </section>
+
+
+    <!-- =====================================================
+         REVIEWS HEADER
+         ===================================================== -->
+
+    <section>
+
+        <div class="review-controls">
+
+            <h2>
+                Customer Reviews
+            </h2>
+
+            <div class="filters">
+
+                <button
+                    class="filter-button active"
+                    data-rating="all">
+                    All
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-rating="5">
+                    5 ★
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-rating="4">
+                    4 ★
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-rating="3">
+                    3 ★
+                </button>
+
+            </div>
+
         </div>
 
-        <div class="ajd-rating-row">
-          <span>1 ★</span>
-          <div class="ajd-rating-bar">
-            <div class="ajd-rating-fill" style="width:0%"></div>
-          </div>
-          <span>0</span>
+
+        <!-- REVIEWS WILL APPEAR HERE -->
+
+        <div
+            class="review-grid"
+            id="reviewGrid">
         </div>
 
-      </div>
-    </div>
+    </section>
 
-    <div class="ajd-review-controls">
-      <h2>Customer Reviews</h2>
 
-      <select class="ajd-review-filter" id="ajdReviewFilter"
-              onchange="filterAJReviews(this.value)">
-        <option value="all">All Reviews</option>
-        <option value="5">5 Star</option>
-        <option value="4">4 Star</option>
-      </select>
-    </div>
+    <!-- FOOTER -->
 
-    <div class="ajd-review-grid" id="ajdReviewGrid"></div>
+    <footer class="footer">
 
-  </div>
-</div>
+        AJDidThese ★ Custom sneakers &amp; limited releases
+
+    </footer>
+
+</main>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     EVERYTHING BELOW IS INCLUDED IN THIS ONE HTML FILE
+     ========================================================= -->
 
 <script>
-const ajdReviews = [
-  ["Jayden R.",5,"Itachi JA 4s","These came out way better than I expected."],
-  ["Marcus T.",4,"Sasuke Lightning Pack","The pictures looked good, but they look even better in person."],
-  ["Chris M.",5,"Naruto Hokage Bundle","Really clean custom and the details stand out."],
-  ["Dylan W.",4,"Luffy Pirate Pack","I like how unique these are compared with regular pairs."],
-  ["Noah B.",5,"Zoro Swordsman Bundle","The design is crazy in the best way."],
-  ["Aiden K.",4,"Gojo Infinity Bundle","The colors came together really well."],
-  ["Cameron S.",5,"Chrome JA 4s","Definitely one of my favorite pairs now."],
-  ["Jordan P.",4,"Kakashi Copy Ninja JA 3s","The little details make the whole shoe look better."],
-  ["Malik H.",5,"Spider-Man","They look clean from every angle."],
-  ["Ethan C.",4,"Princess Peach JA 3s","I would honestly wear these with almost anything."],
 
-  ["Isaiah L.",5,"Itachi JA 4s","The custom work is what caught my attention."],
-  ["Tyler G.",4,"Sasuke Lightning Pack","Super happy with how these turned out."],
-  ["Jalen D.",5,"Naruto Hokage Bundle","The design has a lot of personality."],
-  ["Mason R.",4,"Luffy Pirate Pack","These definitely get people asking where I got them."],
-  ["Andre V.",5,"Zoro Swordsman Bundle","The finished look is really nice."],
-  ["Caleb J.",4,"Gojo Infinity Bundle","The theme was done really well."],
-  ["Devin N.",5,"Chrome JA 4s","I like that the pair does not look basic."],
-  ["Brandon F.",4,"Kakashi Copy Ninja JA 3s","The details are what make these stand out."],
-  ["Xavier T.",5,"Spider-Man","Very cool concept and a clean finish."],
-  ["Logan S.",4,"Princess Peach JA 3s","These are easily a conversation starter."],
+/* =========================================================
+   REVIEW DATA
+   ========================================================= */
 
-  ["Jayden R.",4,"Itachi JA 4s","The details on these are really nice."],
-  ["Marcus T.",5,"Sasuke Lightning Pack","I really like how the whole design works together."],
-  ["Chris M.",4,"Naruto Hokage Bundle","The shoes have a really clean finish."],
-  ["Dylan W.",5,"Luffy Pirate Pack","These are definitely different from anything I've owned."],
-  ["Noah B.",4,"Zoro Swordsman Bundle","The artwork makes these stand out."],
-  ["Aiden K.",5,"Gojo Infinity Bundle","The color combination looks great."],
-  ["Cameron S.",4,"Chrome JA 4s","Really happy with how the pair looks."],
-  ["Jordan P.",5,"Kakashi Copy Ninja JA 3s","The custom details are fire."],
-  ["Malik H.",4,"Spider-Man","They look even better when you actually see them."],
-  ["Ethan C.",5,"Princess Peach JA 3s","The design is super clean."],
+/*
+   100 total reviews
 
-  ["Isaiah L.",4,"Itachi JA 4s","Love the way the theme came together."],
-  ["Tyler G.",5,"Sasuke Lightning Pack","These get compliments every time I wear them."],
-  ["Jalen D.",4,"Naruto Hokage Bundle","The custom look is really well done."],
-  ["Mason R.",5,"Luffy Pirate Pack","Definitely worth it for a unique pair."],
-  ["Andre V.",4,"Zoro Swordsman Bundle","I like all the little details."],
-  ["Caleb J.",5,"Gojo Infinity Bundle","The blue and white look really good together."],
-  ["Devin N.",4,"Chrome JA 4s","Simple but still has a lot going on."],
-  ["Brandon F.",5,"Kakashi Copy Ninja JA 3s","One of the coolest customs I've seen."],
-  ["Xavier T.",4,"Spider-Man","The colors look really good in person."],
-  ["Logan S.",5,"Princess Peach JA 3s","Really happy with the final look."],
+   60 = 5 stars
+   30 = 4 stars
+   10 = 3 stars
 
-  ["Jayden R.",5,"Itachi JA 4s","The red details make the pair pop."],
-  ["Marcus T.",4,"Sasuke Lightning Pack","Clean design and a really cool theme."],
-  ["Chris M.",5,"Naruto Hokage Bundle","These are probably my favorite customs right now."],
-  ["Dylan W.",4,"Luffy Pirate Pack","The design is really fun without looking too crazy."],
-  ["Noah B.",5,"Zoro Swordsman Bundle","The three-sword theme looks awesome."],
-  ["Aiden K.",4,"Gojo Infinity Bundle","The pair looks really good with casual outfits."],
-  ["Cameron S.",5,"Chrome JA 4s","The black and white look is so clean."],
-  ["Jordan P.",4,"Kakashi Copy Ninja JA 3s","Really like the character details."],
-  ["Malik H.",5,"Spider-Man","These are definitely attention grabbers."],
-  ["Ethan C.",4,"Princess Peach JA 3s","Cute design and really clean finish."],
+   Average:
 
-  ["Isaiah L.",5,"Itachi JA 4s","The whole pair feels really well put together."],
-  ["Tyler G.",4,"Sasuke Lightning Pack","The lightning theme looks really nice."],
-  ["Jalen D.",5,"Naruto Hokage Bundle","Love the Naruto theme on these."],
-  ["Mason R.",4,"Luffy Pirate Pack","The artwork looks really good."],
-  ["Andre V.",5,"Zoro Swordsman Bundle","These stand out without being too much."],
-  ["Caleb J.",4,"Gojo Infinity Bundle","Really clean pair overall."],
-  ["Devin N.",5,"Chrome JA 4s","The monochrome look is exactly what I wanted."],
-  ["Brandon F.",4,"Kakashi Copy Ninja JA 3s","I really like the custom touches."],
-  ["Xavier T.",5,"Spider-Man","The red and black look goes crazy."],
-  ["Logan S.",4,"Princess Peach JA 3s","Really fun pair and the details look great."],
+   (60×5 + 30×4 + 10×3) ÷ 100 = 4.5
+*/
 
-  ["Jayden R.",4,"Itachi JA 4s","Really like the darker look of these."],
-  ["Marcus T.",5,"Sasuke Lightning Pack","The design looks even better up close."],
-  ["Chris M.",4,"Naruto Hokage Bundle","The theme is instantly recognizable."],
-  ["Dylan W.",5,"Luffy Pirate Pack","These have so much character."],
-  ["Noah B.",4,"Zoro Swordsman Bundle","The details make the shoes feel custom."],
-  ["Aiden K.",5,"Gojo Infinity Bundle","Really nice colors and a clean finish."],
-  ["Cameron S.",4,"Chrome JA 4s","These are clean enough to wear all the time."],
-  ["Jordan P.",5,"Kakashi Copy Ninja JA 3s","The design is seriously nice."],
-  ["Malik H.",4,"Spider-Man","I like how bold the design is."],
-  ["Ethan C.",5,"Princess Peach JA 3s","The peach theme came out really good."],
 
-  ["Isaiah L.",4,"Itachi JA 4s","Definitely a unique pair."],
-  ["Tyler G.",5,"Sasuke Lightning Pack","The custom work looks really clean."],
-  ["Jalen D.",4,"Naruto Hokage Bundle","The colors are really nice together."],
-  ["Mason R.",5,"Luffy Pirate Pack","I would definitely recommend these."],
-  ["Andre V.",4,"Zoro Swordsman Bundle","The theme looks great on the shoe."],
-  ["Caleb J.",5,"Gojo Infinity Bundle","The details are what sold me."],
-  ["Devin N.",4,"Chrome JA 4s","Very clean custom."],
-  ["Brandon F.",5,"Kakashi Copy Ninja JA 3s","These look amazing from close up."],
-  ["Xavier T.",4,"Spider-Man","Really like the overall design."],
-  ["Logan S.",5,"Princess Peach JA 3s","These turned out really nice."],
+const names = [
 
-  ["Jayden R.",5,"Itachi JA 4s","The black and red combination is perfect."],
-  ["Marcus T.",4,"Sasuke Lightning Pack","Really good-looking pair."],
-  ["Chris M.",5,"Naruto Hokage Bundle","The custom details are awesome."],
-  ["Dylan W.",4,"Luffy Pirate Pack","Love the pirate theme."],
-  ["Noah B.",5,"Zoro Swordsman Bundle","These look crazy in person."],
-  ["Aiden K.",4,"Gojo Infinity Bundle","The design is really clean."],
-  ["Cameron S.",5,"Chrome JA 4s","Exactly the type of custom I was looking for."],
-  ["Jordan P.",4,"Kakashi Copy Ninja JA 3s","The character details are really cool."],
-  ["Malik H.",5,"Spider-Man","One of the best custom designs I've seen."],
-  ["Ethan C.",4,"Princess Peach JA 3s","Super fun design and nice finish."]
+    "Jayden R.",
+    "Malik T.",
+    "Chris M.",
+    "Dylan W.",
+    "Andre P.",
+    "Jordan K.",
+    "Cameron B.",
+    "Isaiah L.",
+    "Noah S.",
+    "Marcus H.",
+    "Ethan C.",
+    "Tyler J.",
+    "Aiden G.",
+    "Devin F.",
+    "Jalen D.",
+    "Mason V.",
+    "Kobe N.",
+    "Elijah P.",
+    "Brandon S.",
+    "Caleb R.",
+    "Trey W.",
+    "Damian C.",
+    "Xavier M.",
+    "Jaylen B.",
+    "Micah T."
+
 ];
 
-function ajdStars(rating) {
-  return "★".repeat(rating) + "☆".repeat(5 - rating);
-}
 
-function ajdDate(index) {
-  const date = new Date();
-  date.setDate(date.getDate() - (index * 2 + 3));
+const products = [
 
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric"
-  });
-}
+    "Itachi JA 4s",
+    "Mario JA Morants",
+    "Chrome Nike Slides",
+    "One Piece JA 3s",
+    "Black & White JA 3s",
+    "Custom JA Cleats",
+    "Naruto JA 3s",
+    "Special Edition JA 4s"
 
-function renderAJReviews(filter = "all") {
+];
 
-  const grid = document.getElementById("ajdReviewGrid");
 
-  if (!grid) return;
+const fiveStarReviews = [
 
-  grid.innerHTML = "";
+    "These came out way better than I expected. The details are crazy.",
 
-  ajdReviews.forEach((review, index) => {
+    "Really clean pair. The pictures looked good but they look even better in person.",
 
-    const name = review[0];
-    const rating = review[1];
-    const product = review[2];
-    const text = review[3];
+    "The custom work is fire and the shoes feel solid. Definitely happy with them.",
 
-    if (filter !== "all" && rating !== Number(filter)) {
-      return;
-    }
+    "Love how these turned out. The little details make the whole pair stand out.",
 
-    const initials = name
-      .split(" ")
-      .map(part => part[0])
-      .join("")
-      .substring(0,2);
+    "Honestly one of my favorite pairs right now. Super clean.",
 
-    const card = document.createElement("div");
-    card.className = "ajd-review-card";
+    "The design came out exactly how I wanted it. Would definitely order again.",
 
-    card.innerHTML = `
-      <div class="ajd-review-top">
+    "These look amazing in person. The black and white setup goes with everything.",
 
-        <div class="ajd-review-user">
+    "Very happy with the final pair. The custom details are what sold me.",
 
-          <div class="ajd-avatar">
-            ${initials}
-          </div>
+    "The shoes look way better than I expected. Definitely a unique pair.",
 
-          <div>
-            <div class="ajd-review-name">
-              ${name}
-            </div>
+    "Clean work all around. The design has a lot of detail without looking messy.",
 
-            <div class="ajd-review-date">
-              ${ajdDate(index)}
-            </div>
-          </div>
+    "The pair is crazy in person. Pictures really don't show all the details.",
 
-        </div>
+    "I really like how the colors came together. Super clean custom.",
 
-        <div class="ajd-review-stars">
-          ${ajdStars(rating)}
-        </div>
+    "These are easily one of the coolest pairs I've seen.",
 
-      </div>
+    "The design is hard. Everything came together really well.",
 
-      <div class="ajd-review-product">
-        ${product}
-      </div>
+    "Very clean pair and the custom work makes them stand out.",
 
-      <div class="ajd-review-text">
-        ${text}
-      </div>
+    "The details are probably my favorite part. Looks great on foot.",
 
-      <div class="ajd-verified">
-        ✓ Verified Purchase
-      </div>
+    "I was really impressed with how these turned out.",
 
-      <div class="ajd-review-footer">
-        Helpful • Was this review helpful?
-      </div>
-    `;
+    "The whole pair looks clean from every angle.",
 
-    grid.appendChild(card);
-  });
-}
+    "Definitely happy with these. The design is unique without being too much.",
 
-function filterAJReviews(value) {
-  renderAJReviews(value);
-}
+    "These came out fire. I would definitely get another custom pair."
 
-function openAJReviews() {
-  const overlay = document.getElementById("ajdReviewsOverlay");
+];
 
-  if (overlay) {
-    overlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-    renderAJReviews();
-  }
-}
 
-function closeAJReviews() {
-  const overlay = document.getElementById("ajdReviewsOverlay");
+const fourStarReviews = [
 
-  if (overlay) {
-    overlay.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-}
+    "Really like the shoes. A couple tiny things could be cleaner, but overall they're fire.",
 
-/* Close when clicking outside the reviews box */
-document.getElementById("ajdReviewsOverlay")?.addEventListener("click", function(e) {
-  if (e.target === this) {
-    closeAJReviews();
-  }
-});
+    "Good quality and a really cool design. Happy with how they turned out.",
 
-/* ESC key closes reviews */
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") {
-    closeAJReviews();
-  }
-});
+    "The pair looks great and the details are nice. Definitely worth checking out.",
 
-/* Connect Reviews navigation button */
-document.addEventListener("DOMContentLoaded", function() {
+    "Very solid custom. The design is clean and they look good on foot.",
 
-  const reviewsLink = document.getElementById("reviewsNavLink");
+    "I like these a lot. The colors and details came together really well.",
 
-  if (reviewsLink) {
+    "Good experience overall and the shoes came out looking really clean.",
 
-    reviewsLink.addEventListener("click", function(e) {
-      e.preventDefault();
-      openAJReviews();
+    "The custom design looks great. There are just a few small details I'd change.",
+
+    "Really happy with the pair overall. The design is definitely the best part.",
+
+    "These look good and the details are nice. Very solid custom pair.",
+
+    "The shoes came out really clean. I'd probably order another design.",
+
+    "Good looking pair. The custom details make them stand out.",
+
+    "I like the final look a lot. Just a few small things could be improved.",
+
+    "Pretty clean custom and the design is really cool.",
+
+    "The pair looks great in person. Definitely a unique design.",
+
+    "Overall really happy with them. The details are nice.",
+
+    "The design is clean and they look good on foot.",
+
+    "Really nice pair. I like the attention to detail.",
+
+    "The shoes look great and the custom style is different from anything I have.",
+
+    "Solid pair overall. The design came together really well.",
+
+    "Very cool custom. Would definitely consider another pair."
+
+];
+
+
+const threeStarReviews = [
+
+    "The design is cool and the shoes look good. I just expected a little more detail.",
+
+    "Pretty good overall. There are a few small things I would change on another pair.",
+
+    "I like the concept and the shoes look nice. Some details could be a little cleaner.",
+
+    "The idea is really cool. I think a little more attention to the smaller details would help.",
+
+    "The shoes look good overall, but I expected the custom work to be a little more detailed.",
+
+    "Cool design and good concept. There are a couple things I'd improve.",
+
+    "The pair is nice but some of the smaller details could be cleaner.",
+
+    "I like the style. The finished pair just wasn't exactly what I expected.",
+
+    "Good concept and decent overall look. I think the design could be polished a little more.",
+
+    "The shoes are cool and unique. I'd just make a few changes to the details."
+
+];
+
+
+const dates = [
+
+    "Aug 28, 2026",
+    "Aug 24, 2026",
+    "Aug 19, 2026",
+    "Aug 14, 2026",
+    "Aug 9, 2026",
+    "Aug 3, 2026",
+    "Jul 29, 2026",
+    "Jul 24, 2026",
+    "Jul 18, 2026",
+    "Jul 12, 2026",
+    "Jul 7, 2026",
+    "Jun 30, 2026"
+
+];
+
+
+/* =========================================================
+   CREATE 100 REVIEWS
+   ========================================================= */
+
+const reviews = [];
+
+
+/*
+   60 five-star reviews
+*/
+
+for (let i = 0; i < 60; i++) {
+
+    reviews.push({
+
+        name: names[i % names.length],
+
+        rating: 5,
+
+        product: products[i % products.length],
+
+        date: dates[i % dates.length],
+
+        text: fiveStarReviews[i % fiveStarReviews.length]
+
     });
 
-  }
+}
+
+
+/*
+   30 four-star reviews
+*/
+
+for (let i = 0; i < 30; i++) {
+
+    reviews.push({
+
+        name: names[(i + 10) % names.length],
+
+        rating: 4,
+
+        product: products[(i + 2) % products.length],
+
+        date: dates[(i + 3) % dates.length],
+
+        text: fourStarReviews[i % fourStarReviews.length]
+
+    });
+
+}
+
+
+/*
+   10 three-star reviews
+*/
+
+for (let i = 0; i < 10; i++) {
+
+    reviews.push({
+
+        name: names[(i + 15) % names.length],
+
+        rating: 3,
+
+        product: products[(i + 4) % products.length],
+
+        date: dates[(i + 5) % dates.length],
+
+        text: threeStarReviews[i % threeStarReviews.length]
+
+    });
+
+}
+
+
+/* =========================================================
+   STAR FUNCTION
+   ========================================================= */
+
+function getStars(rating) {
+
+    let result = "";
+
+    for (let i = 1; i <= 5; i++) {
+
+        if (i <= rating) {
+
+            result += "★";
+
+        } else {
+
+            result += "☆";
+
+        }
+
+    }
+
+    return result;
+
+}
+
+
+/* =========================================================
+   GET INITIALS
+   ========================================================= */
+
+function getInitials(name) {
+
+    return name
+        .replace(".", "")
+        .split(" ")
+        .map(word => word.charAt(0))
+        .slice(0, 2)
+        .join("")
+        .toUpperCase();
+
+}
+
+
+/* =========================================================
+   CALCULATE AVERAGE
+   ========================================================= */
+
+function calculateAverage() {
+
+    let total = 0;
+
+    reviews.forEach(review => {
+
+        total += review.rating;
+
+    });
+
+    return total / reviews.length;
+
+}
+
+
+/* =========================================================
+   UPDATE MAIN RATING
+   ========================================================= */
+
+function updateMainRating() {
+
+    const average = calculateAverage();
+
+    document.getElementById("averageRating").textContent =
+        average.toFixed(1);
+
+    document.getElementById("ratingCount").textContent =
+        reviews.length;
+
+    document.getElementById("averageStars").textContent =
+        "★★★★★";
+
+}
+
+
+/* =========================================================
+   CREATE RATING BREAKDOWN
+   ========================================================= */
+
+function createBreakdown() {
+
+    const breakdown =
+        document.getElementById("ratingBreakdown");
+
+    const counts = {
+
+        5: 0,
+        4: 0,
+        3: 0,
+        2: 0,
+        1: 0
+
+    };
+
+
+    reviews.forEach(review => {
+
+        counts[review.rating]++;
+
+    });
+
+
+    breakdown.innerHTML = "";
+
+
+    for (let rating = 5; rating >= 1; rating--) {
+
+        const percentage =
+            (counts[rating] / reviews.length) * 100;
+
+
+        const row =
+            document.createElement("div");
+
+        row.className = "bar-row";
+
+
+        row.innerHTML = `
+
+            <span>${rating}</span>
+
+            <div class="rating-bar">
+
+                <div
+                    class="rating-fill"
+                    style="width:${percentage}%">
+                </div>
+
+            </div>
+
+            <span>${counts[rating]}</span>
+
+        `;
+
+
+        breakdown.appendChild(row);
+
+    }
+
+}
+
+
+/* =========================================================
+   CREATE REVIEW CARD
+   ========================================================= */
+
+function createReviewCard(review) {
+
+    const card =
+        document.createElement("article");
+
+    card.className = "review-card";
+
+
+    card.innerHTML = `
+
+        <div class="review-top">
+
+            <div class="person">
+
+                <div class="avatar">
+                    ${getInitials(review.name)}
+                </div>
+
+                <div>
+
+                    <div class="name">
+                        ${review.name}
+                    </div>
+
+                    <div class="customer-label">
+                        Customer Review
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="review-date">
+                ${review.date}
+            </div>
+
+        </div>
+
+
+        <div
+            class="review-stars"
+            aria-label="${review.rating} out of 5 stars">
+
+            ${getStars(review.rating)}
+
+        </div>
+
+
+        <p class="review-text">
+            ${review.text}
+        </p>
+
+
+        <span class="product-tag">
+            ${review.product}
+        </span>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =========================================================
+   DISPLAY REVIEWS
+   ========================================================= */
+
+function displayReviews(filter = "all") {
+
+    const grid =
+        document.getElementById("reviewGrid");
+
+
+    grid.innerHTML = "";
+
+
+    let filteredReviews;
+
+
+    if (filter === "all") {
+
+        filteredReviews = reviews;
+
+    } else {
+
+        filteredReviews =
+            reviews.filter(
+                review =>
+                    review.rating === Number(filter)
+            );
+
+    }
+
+
+    if (filteredReviews.length === 0) {
+
+        grid.innerHTML = `
+
+            <div class="empty-reviews">
+
+                No reviews found for this rating.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    filteredReviews.forEach(review => {
+
+        grid.appendChild(
+            createReviewCard(review)
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   FILTER BUTTONS
+   ========================================================= */
+
+const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", function() {
+
+
+        filterButtons.forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+        this.classList.add("active");
+
+
+        const rating =
+            this.getAttribute("data-rating");
+
+
+        displayReviews(rating);
+
+    });
 
 });
+
+
+/* =========================================================
+   START EVERYTHING
+   ========================================================= */
+
+updateMainRating();
+
+createBreakdown();
+
+displayReviews("all");
+
+
+/* =========================================================
+   CONSOLE CHECK
+   ========================================================= */
+
+console.log(
+    "AJDidThese Reviews Loaded:",
+    reviews.length
+);
+
+console.log(
+    "Average Rating:",
+    calculateAverage().toFixed(1)
+);
+
 </script>
+
+</body>
+</html>

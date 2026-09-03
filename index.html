@@ -1159,6 +1159,153 @@ button.menu-btn,
 }
 </style>
 
+
+<style id="ajd-mobile-carousel-fix">
+/* =====================================================
+   AJDIDTHESE MOBILE SHOPPING CAROUSELS
+   Swipe left/right like a modern sneaker marketplace
+   ===================================================== */
+@media (max-width: 720px) {
+  /* Each shoe collection becomes a horizontal swipe row */
+  .products,
+  .collection-scroll,
+  .naruto-scroll {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    grid-template-columns: none !important;
+    gap: 14px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 4px 4px 18px !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-left: 4px !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    touch-action: pan-x !important;
+    scrollbar-width: none !important;
+  }
+
+  .products::-webkit-scrollbar,
+  .collection-scroll::-webkit-scrollbar,
+  .naruto-scroll::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* StockX-style large swipeable shoe cards */
+  .products > .product,
+  .collection-scroll > .product,
+  .naruto-scroll > .product {
+    flex: 0 0 82vw !important;
+    width: 82vw !important;
+    min-width: 82vw !important;
+    max-width: 82vw !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    padding: 14px !important;
+  }
+
+  .products > .product img,
+  .collection-scroll > .product img,
+  .naruto-scroll > .product img {
+    height: 230px !important;
+    min-height: 230px !important;
+    max-height: 230px !important;
+    width: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .products > .product h3,
+  .collection-scroll > .product h3,
+  .naruto-scroll > .product h3 {
+    font-size: 1rem !important;
+    min-height: 2.6em !important;
+  }
+
+  /* More room for the price and Add To Cart button */
+  .products > .product .price,
+  .collection-scroll > .product .price,
+  .naruto-scroll > .product .price {
+    font-size: 1.35rem !important;
+  }
+
+  .products > .product .buy,
+  .collection-scroll > .product .buy,
+  .naruto-scroll > .product .buy {
+    width: 100% !important;
+    min-height: 46px !important;
+  }
+
+  /* Small swipe hint under collection rows */
+  .products::after,
+  .collection-scroll::after,
+  .naruto-scroll::after {
+    content: "SWIPE →" !important;
+    flex: 0 0 auto !important;
+    align-self: center !important;
+    color: #777 !important;
+    font-size: .65rem !important;
+    font-weight: 900 !important;
+    letter-spacing: .12em !important;
+    padding-right: 6px !important;
+  }
+}
+
+/* =====================================================
+   MOBILE NAVIGATION — ALWAYS HORIZONTALLY SWIPEABLE
+   ===================================================== */
+#mainNavigation {
+  touch-action: pan-x !important;
+}
+
+#mainNavigation .navbar-track {
+  overflow-x: scroll !important;
+  overflow-y: hidden !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  justify-content: flex-start !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-x: contain !important;
+  touch-action: pan-x !important;
+  scrollbar-width: none !important;
+  cursor: grab !important;
+}
+
+#mainNavigation .navbar-track:active {
+  cursor: grabbing !important;
+}
+
+#mainNavigation .navbar-track::-webkit-scrollbar {
+  display: none !important;
+  height: 0 !important;
+}
+
+#mainNavigation .navbar-track a {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 720px) {
+  #mainNavigation .navbar-track {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+    scroll-padding-left: 12px !important;
+  }
+
+  #mainNavigation .navbar-track a {
+    min-height: 38px !important;
+    padding: 10px 14px !important;
+    font-size: .8rem !important;
+  }
+}
+</style>
+
 </head>
 
 <body>

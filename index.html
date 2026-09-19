@@ -3510,6 +3510,202 @@ function checkout(){
   const el=document.getElementById("checkoutTotal"); if(el) el.innerHTML="Amount Due: $"+total.toFixed(2).replace(/\.00$/,'');
   const modal=document.getElementById("paymentModal"); if(modal) modal.style.display="flex";
 }
+ async function sendOrder() {
+  if (!cart.length) {
+    alert("Your cart is empty.");
+    return;
+  }
+
+  const required = [
+    ["customerFirst", "First name"],
+    ["customerLast", "Last name"],
+    ["customerAddress", "Street address"],
+    ["customerCity", "City"],
+    ["customerState", "State"],
+    ["customerZip", "ZIP code"],
+    ["customerEmail", "Email address"],
+    ["customerPayment", "Payment username"]
+  ];
+
+  for (const [id, label] of required) {
+    const field = document.getElementById(id);
+
+    if (!field || !field.value.trim()) {
+      alert("Please enter your " + label + ".");
+      if (field) field.focus();
+      return;
+    }
+  }
+
+  const email = document.getElementById("customerEmail").value.trim();
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert("Please enter a valid email address.");
+    document.getElementById("customerEmail").focus();
+    return;
+  }
+
+  recalcTotal();
+
+  const orderNumber = "AJD-" + Date.now().toString().slice(-6);
+
+  const first = document.getElementById("customerFirst").value.trim();
+  const last = document.getElementById("customerLast").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const city = document.getElementById("customerCity").value.trim();
+  const state = document.getElementById("customerState").value.trim();
+  const zip = document.getElementById("customerZip").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const payment = document.getElementById("customerPayment").value.trim();
+
+  const webhookUrl =
+    "YOUR_DISCORD_WEBHOOK_URL";
+
+  const itemLines = cart.map(item => {
+    const qty = Number(item.qty || 1);
+    const price = Number(item.price || 0);
+    const size = item.size ? ` — Size ${item.size}` : "";
+
+    return `• ${item.name}${size} × ${qty} — $${(price * qty).toFixed(2)}`;
+  }).join("\n");
+
+  const discordPayload = {
+    username: "AJDIDTHese Orders",
+
+    embeds: [{
+      title: "🛍️ NEW ORDER — " + orderNumber,
+      description: "A new order was submitted from the website.",
+
+      color: 0,
+
+      fields: [
+        {
+          name: "👤 Customer",
+          value: `${first} ${last}`,
+          inline: true
+        },
+        {
+          name: "📧 Email",
+          value: email,
+          inline: true
+        },
+        {
+          name: "📱 Phone",
+          value: phone || "Not provided",
+          inline: true
+        },
+        {
+          name: "📦 Shipping Address",
+          value: `${address}\n${city}, ${state} ${zip}`,
+          inline: false
+        },
+        {
+          name: "💳 Payment",
+          value: payment,
+          inline: true
+        },
+        {
+          name: "💰 Order Total",
+          value: `$${total.toFixed(2)}`,
+          inline: true
+        },
+        {
+          name: "🛒 Items",
+          value: itemLines || "No items",
+          inline: false
+        }
+      ],
+
+      footer: {
+        text: "AJDIDTHese • Website Order"
+      },
+
+      timestamp: new Date().toISOString()
+    }]
+  };
+
+  const submitButton =
+    document.querySelector(".checkout-submit");
+
+  try {
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerHTML = "SENDING ORDER <span>...</span>";
+    }
+
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(discordPayload)
+    });
+
+    if (!response.ok) {
+      throw new Error("Discord webhook failed");
+    }
+
+    /* Professional confirmation */
+    const confirmation =
+      document.getElementById("orderConfirmation");
+
+    if (confirmation) {
+      const number =
+        document.getElementById("confirmationOrderNumber");
+
+      const customer =
+        document.getElementById("confirmationCustomer");
+
+      const emailElement =
+        document.getElementById("confirmationEmail");
+
+      const totalElement =
+        document.getElementById("confirmationTotal");
+
+      if (number) number.textContent = orderNumber;
+      if (customer) customer.textContent = `${first} ${last}`;
+      if (emailElement) emailElement.textContent = email;
+      if (totalElement) {
+        totalElement.textContent =
+          "$" + total.toFixed(2).replace(/\.00$/, "");
+      }
+
+      confirmation.classList.add("show");
+    }
+
+    /* Hide checkout elements */
+    document.querySelector(".checkout-head").style.display = "none";
+    document.querySelector(".checkout-summary").style.display = "none";
+    document.querySelector(".payment-method-card").style.display = "none";
+    document.querySelector(".checkout-section-title").style.display = "none";
+    document.querySelector(".checkout-form").style.display = "none";
+    document.querySelector(".checkout-note").style.display = "none";
+
+    if (submitButton) {
+      submitButton.style.display = "none";
+    }
+
+    const backButton =
+      document.querySelector(".checkout-close");
+
+    if (backButton) {
+      backButton.style.display = "none";
+    }
+
+  } catch (error) {
+    console.error(error);
+
+    alert(
+      "We couldn't send your order right now. Please try again."
+    );
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.innerHTML =
+        'SUBMIT ORDER <span>→</span>';
+    }
+  }
+}          
 function closeModal(){const modal=document.getElementById("paymentModal");if(modal)modal.style.display="none";}
 function productSlug(name){return name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
 function openProductModal(card){

@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AJDidThese | Customer Ratings</title>
+
+<style>
+/* =========================================================
+   AJDIDTHESE CUSTOMER RATINGS
+   COMPLETE ONE-FILE VERSION
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= TOP BAR ================= */
+
+.topbar {
+    height: 72px;
+    background: #0b0b0b;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.brand span {
+    color: #f2c94c;
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+
+    border: 1px solid white;
+    border-radius: 8px;
+
+    padding: 11px 16px;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    transition: 0.2s ease;
+}
+
+.back-button:hover {
+    background: white;
+    color: black;
+}
+
+/* ================= MAIN ================= */
+
+.container {
+    width: min(1120px, 92%);
+    margin: auto;
+
+    padding: 50px 0 80px;
+}
+
+/* ================= HEADER ================= */
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.kicker {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    margin: 0;
+
+    font-size: clamp(38px, 6vw, 64px);
+
+    letter-spacing: -3px;
+    line-height: 1;
+}
+
+.subtitle {
+    max-width: 650px;
+
+    margin: 15px auto 0;
+
+    color: #666;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ================= RATING BOX ================= */
+
+.rating-overview {
+    background: #0b0b0b;
+    color: white;
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: 30px;
+
+    align-items: center;
+
+    margin-bottom: 45px;
+}
+
+.big-rating {
+    text-align: center;
+
+    border-right: 1px solid #333;
+
+    padding-right: 30px;
+}
+
+.big-number {
+    font-size: 60px;
+
+    line-height: 1;
+
+    font-weight: 950;
+}
+
+.big-stars {
+    font-size: 24px;
+
+    letter-spacing: 2px;
+
+    margin: 10px 0 5px;
+}
+
+.rating-count {
+    color: #bcbcbc;
+
+    font-size: 14px;
+}
+
+/* ================= BREAKDOWN ================= */
+
+.breakdown {
+    display: grid;
+
+    gap: 12px;
+}
+
+.bar-row {
+    display: grid;
+
+    grid-template-columns: 25px 1fr 35px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.rating-bar {
+    height: 8px;
+
+    background: #333;
+
+    border-radius: 100px;
+
+    overflow: hidden;
+}
+
+.rating-fill {
+    height: 100%;
+
+    background: white;
+
+    border-radius: 100px;
+
+    transition: width 0.5s ease;
+}
+
+/* ================= REVIEWS HEADER ================= */
+
+.review-controls {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+.review-controls h2 {
+    margin: 0;
+
+    font-size: 27px;
+}
+
+/* ================= FILTERS ================= */
+
+.filters {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.filter-button {
+    border: 1px solid #d0d0d0;
+
+    background: white;
+
+    color: black;
+
+    padding: 9px 14px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.filter-button:hover,
+.filter-button.active {
+    background: black;
+
+    color: white;
+
+    border-color: black;
+}
+
+/* ================= REVIEW GRID ================= */
+
+.review-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+/* ================= REVIEW CARD ================= */
+
+.review-card {
+    background: white;
+
+    border: 1px solid #dedede;
+
+    border-radius: 17px;
+
+    padding: 21px;
+
+    transition: 0.25s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.review-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.person {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.avatar {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: black;
+
+    color: white;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    flex-shrink: 0;
+}
+
+.name {
+    font-size: 14px;
+
+    font-weight: 900;
+}
+
+.customer-label {
+    color: #777;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-top: 3px;
+}
+
+.review-date {
+    color: #888;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+/* ================= STARS ================= */
+
+.review-stars {
+    margin: 16px 0 10px;
+
+    font-size: 17px;
+
+    letter-spacing: 1px;
+}
+
+/* ================= REVIEW TEXT ================= */
+
+.review-text {
+    margin: 0 0 18px;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+    color: #222;
+}
+
+/* ================= PRODUCT TAG ================= */
+
+.product-tag {
+    display: inline-block;
+
+    background: #f5f5f5;
+
+    border: 1px solid #ddd;
+
+    border-radius: 999px;
+
+    padding: 7px 10px;
+
+    font-size: 11px;
+
+    font-weight: 900;
+}
+
+/* ================= EMPTY ================= */
+
+.empty-reviews {
+    border: 1px dashed #ccc;
+
+    border-radius: 17px;
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #777;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    text-align: center;
+
+    color: #888;
+
+    font-size: 12px;
+
+    border-top: 1px solid #eee;
+
+    padding-top: 25px;
+
+    margin-top: 60px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    .topbar {
+        height: 62px;
+
+        padding: 0 4%;
+    }
+
+    .brand {
+        font-size: 17px;
+    }
+
+    .back-button {
+        font-size: 10px;
+
+        padding: 9px 11px;
+    }
+
+    .container {
+        width: 94%;
+
+        padding-top: 35px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+
+        letter-spacing: -2px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .rating-overview {
+        grid-template-columns: 1fr;
+
+        padding: 23px;
+
+        gap: 25px;
+    }
+
+    .big-rating {
+        border-right: none;
+
+        border-bottom: 1px solid #333;
+
+        padding-right: 0;
+
+        padding-bottom: 25px;
+    }
+
+    .big-number {
+        font-size: 54px;
+    }
+
+    .review-controls {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .review-controls h2 {
+        font-size: 23px;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-card {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .topbar {
+        padding: 0 12px;
+    }
+
+    .brand {
+        font-size: 15px;
+    }
+
+    .back-button {
+        padding: 8px 9px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .rating-overview {
+        border-radius: 17px;
+    }
+
+    .big-number {
+        font-size: 48px;
+    }
+
+    .review-top {
+        align-items: flex-start;
+    }
+
+    .review-date {
+        font-size: 10px;
+    }
+}
+
+/* ===== PROFESSIONAL AJDIDTHESE DESIGN ===== */
+:root{--ink:#080808;--muted:#737373;--line:#e7e7e7;--soft:#f7f7f7}
+body{background:#fafafa;color:var(--ink);font-family:Inter,Arial,Helvetica,sans-serif}
+.topbar{height:70px;background:rgba(8,8,8,.96);backdrop-filter:blur(12px);padding:0 5%;border-bottom:1px solid #242424}
+.brand{font-size:20px;letter-spacing:-.8px}.brand span{color:#fff}
+.back-button{border:1px solid #444;border-radius:999px;padding:10px 15px;background:#111}
+.back-button:hover{background:#fff;color:#000;border-color:#fff;transform:translateY(-1px)}
+.container{width:min(1180px,92%);padding:62px 0 85px}
+.hero{margin-bottom:34px}.kicker{font-size:11px;letter-spacing:2.5px;color:#777}
+.hero h1{font-size:clamp(42px,6vw,70px);letter-spacing:-4px}
+.subtitle{font-size:15px;color:#6b6b6b;max-width:620px}
+.rating-overview{position:relative;overflow:hidden;background:linear-gradient(135deg,#070707,#171717);border:1px solid #242424;border-radius:26px;padding:34px;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.rating-overview:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #333;border-radius:50%;right:-110px;top:-130px;opacity:.5}
+.big-rating{border-right:1px solid #333}.big-number{font-size:68px;letter-spacing:-4px}.big-stars{font-size:22px;letter-spacing:3px}.rating-count{color:#aaa}
+.bar-row{grid-template-columns:25px 1fr 42px;color:#ddd}.rating-bar{height:7px;background:#303030}.rating-fill{background:#fff}
+.review-controls{padding:6px 0 20px;border-bottom:1px solid var(--line);margin-bottom:24px}.review-controls h2{font-size:28px;letter-spacing:-1px}
+.filter-button{box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.review-grid{gap:18px}.review-card{position:relative;background:#fff;border:1px solid #e6e6e6;border-radius:20px;padding:22px;box-shadow:0 2px 5px rgba(0,0,0,.025);transition:.22s;animation:reviewIn .35s ease both}
+.review-card:hover{transform:translateY(-5px);border-color:#ccc;box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.avatar{width:44px;height:44px;background:#090909;border:1px solid #222}
+.customer-label{display:flex;align-items:center;gap:5px}
+.customer-label:after{content:"✓ VERIFIED";font-size:8px;letter-spacing:.6px;background:#f1f1f1;color:#111;border-radius:999px;padding:3px 6px}
+.review-stars{font-size:16px;letter-spacing:2px}.review-text{font-size:14px;line-height:1.72;color:#292929;min-height:48px}
+.product-tag{background:#f7f7f7;border:1px solid #e3e3e3}
+.footer{border-top:1px solid #e5e5e5}
+@keyframes reviewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:700px){.container{padding:42px 0 65px}.hero h1{letter-spacing:-2.5px}.rating-overview{border-radius:21px;padding:24px}.review-card{border-radius:18px}.trust-strip{flex-direction:column;align-items:flex-start!important}#sortReviews{width:100%}}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
+
+<header class="topbar">
+
+    <div class="brand">
+        AJDidThese <span>★</span>
+    </div>
+
+    <a href="index.html" class="back-button">
+        ← BACK TO STORE
+    </a>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
+
+<main class="container">
+
+
+    <!-- HEADER -->
+
+    <section class="hero">
+
+        <div class="kicker">
+            AJDIDTHESE • CUSTOMER FEEDBACK
+        </div>
+
+        <h1>
+            Customer Ratings
+        </h1>
+
+        <p class="subtitle">
+            See what people are saying about the custom sneaker collection.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         RATING OVERVIEW
+         ===================================================== -->
+
+    <section class="rating-overview">
+
+        <div class="big-rating">
+
+            <div
+                class="big-number"
+                id="averageRating">
+                4.8
+            </div>
+
+            <div
+                class="big-stars"
+                id="averageStars">
+                ★★★★★
+            </div>
+
+            <div class="rating-count">
+
+                <span id="ratingCount">
+                    634
+                </span>
+
+                ratings
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="breakdown"
+            id="ratingBreakdown">
+
+        </div>
+
+    </section>
+
+    <div class="trust-strip" style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 0 34px;padding:16px 20px;background:#fff;border:1px solid #e6e6e6;border-radius:16px;color:#555;font-size:12px;font-weight:800;">
+        <span>✓ CUSTOMER VERIFIED</span>
+        <span>634 TOTAL REVIEWS</span>
+        <span>★ 4.8 AVERAGE RATING</span>
+    </div>
+
+
+    <!-- =====================================================
+         REVIEWS HEADER
+         ===================================================== -->
+
+    <section>
+
+        <div class="review-controls">
+
+            <h2>
+                Customer Reviews
+            </h2>
+
+            <div class="filters">
+
+                <button
+                    class="filter-button active"
+                    data-rating="all">
+                    All
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-rating="5">
+                    5 ★
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-rating="4">
+                    4 ★
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-rating="3">
+                    3 ★
+                </button>
+
+            </div>
+
+            <select id="sortReviews" aria-label="Sort reviews" style="border:1px solid #ddd;background:#fff;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:800;cursor:pointer;">
+                <option value="newest">Newest</option>
+                <option value="highest">Highest rated</option>
+                <option value="lowest">Lowest rated</option>
+            </select>
+
+        </div>
+
+
+        <!-- REVIEWS WILL APPEAR HERE -->
+
+        <div
+            class="review-grid"
+            id="reviewGrid">
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        AJDidThese ★ Custom sneakers &amp; limited releases
+
+    </footer>
+
+</main>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     EVERYTHING BELOW IS INCLUDED IN THIS ONE HTML FILE
+     ========================================================= -->
+
+<script>
+
+/* =========================================================
+   REVIEW DATA
+   ========================================================= */
+
+/*
+   634 total reviews
+
+   60 = 5 stars
+   30 = 4 stars
+   10 = 3 stars
+
+   Average:
+
+   (508×5 + 95×4 + 31×3) ÷ 634 ≈ 4.75
+*/
+
+
+const names = [
+
+    "Jayden R.",
+    "Malik T.",
+    "Chris M.",
+    "Dylan W.",
+    "Andre P.",
+    "Jordan K.",
+    "Cameron B.",
+    "Isaiah L.",
+    "Noah S.",
+    "Marcus H.",
+    "Ethan C.",
+    "Tyler J.",
+    "Aiden G.",
+    "Devin F.",
+    "Jalen D.",
+    "Mason V.",
+    "Kobe N.",
+    "Elijah P.",
+    "Brandon S.",
+    "Caleb R.",
+    "Trey W.",
+    "Damian C.",
+    "Xavier M.",
+    "Jaylen B.",
+    "Micah T."
+
+];
+
+
+const products = [
+
+    "Itachi JA 4s",
+    "Mario JA Morants",
+    "Chrome Nike Slides",
+    "One Piece JA 3s",
+    "Black & White JA 3s",
+    "Custom JA Cleats",
+    "Naruto JA 3s",
+    "Special Edition JA 4s"
+
+];
+
+
+const fiveStarReviews = [
+    "These came out incredible. The custom artwork has way more detail than I expected.",
+    "I was impressed as soon as I opened the box. The finished pair looks really sharp.",
+    "The design feels personal without being overdone. I am very happy with these.",
+    "These look even better on foot than they did in the pictures.",
+    "The little custom touches are what sold me. They make the whole pair feel different.",
+    "I have already gotten compliments on these. The design definitely gets noticed.",
+    "The color combination came together perfectly and the finish looks clean.",
+    "I wanted something nobody else had and this pair definitely delivered.",
+    "The artwork is crazy up close. You can actually appreciate the smaller details.",
+    "These are easily one of my favorite pairs in my rotation right now.",
+    "The final result matched what I had in mind better than I expected.",
+    "I really like how the theme carries across the entire shoe instead of just one area.",
+    "The pair has a clean look but still has plenty of personality.",
+    "The custom work makes these feel completely different from a regular release.",
+    "I was surprised by how good the details looked in person.",
+    "Everything feels intentional on this pair. Nothing looks randomly added.",
+    "These turned out clean from every angle, especially when you see them on foot.",
+    "I wanted a standout pair and this is exactly what I ended up with.",
+    "The design has a lot going on, but it still looks put together.",
+    "The finished shoes have that one-of-one feeling I was hoping for.",
+    "I keep looking at the small details because there is more to notice than I expected.",
+    "The pair looks premium and the custom artwork gives it a lot of character.",
+    "These definitely exceeded my expectations. The pictures did not do them justice.",
+    "The design is unique without making the shoes difficult to wear.",
+    "I really like the way the custom graphics work with the original shape of the shoe.",
+    "The final pair feels much more personal than anything I could have bought stock.",
+    "These are clean, creative, and easy to wear. I am glad I ordered them.",
+    "The details around the shoe are my favorite part. They make a big difference.",
+    "The whole design flows really well from one shoe to the other.",
+    "I was looking for something different and these came out exactly that way.",
+    "The custom finish is what makes this pair stand out in my collection.",
+    "These look like a completely different shoe compared with the original.",
+    "I appreciate how much detail went into the design without making it look cluttered.",
+    "The finished pair has a really strong visual impact in person.",
+    "I did not expect the small accents to make such a difference, but they really do.",
+    "These came out better than the mockup I had pictured in my head.",
+    "The artwork has a lot of personality and the shoes feel genuinely custom.",
+    "I have nothing but good things to say about the final look.",
+    "The design works especially well once you actually put the shoes on.",
+    "These are the kind of customs that make people stop and ask about them.",
+    "The balance between the base shoe and the custom elements is really good.",
+    "I am impressed with how consistent the design looks across the pair.",
+    "These have become my go-to pair when I want something that stands out.",
+    "The finished work looks thoughtful instead of rushed, which I really appreciate.",
+    "I would absolutely come back for another custom after seeing these in person.",
+    "The pair feels fresh and different while still being easy to style.",
+    "The detail is what separates these from a normal pair for me.",
+    "Everything came together better than I expected, from the colors to the artwork.",
+    "These are seriously clean. I am glad I went with the custom option."
+];
+
+const fourStarReviews = [
+    "These came out really nice. I would only clean up a couple of the smaller details.",
+    "I like the overall design a lot, especially the way the colors work together.",
+    "The pair looks great on foot. There are just a few little things I would change.",
+    "Really solid custom overall. The main design came through exactly how I wanted.",
+    "I am happy with these. The artwork is the strongest part of the pair for me.",
+    "The finished look is clean, although I noticed a couple areas that could be sharper.",
+    "These are definitely different from anything I already own, and I like that.",
+    "The color placement works really well. I would just make a few minor adjustments.",
+    "I like the final pair more every time I look at it. A few details could be refined.",
+    "The custom work is noticeable without being too loud. Overall, a good pair.",
+    "These look good in person and the main artwork came out nicely.",
+    "I was pleased with the result. There are a couple small imperfections, but nothing major.",
+    "The design has a lot of personality and the shoes are easy to wear.",
+    "Pretty happy with these. The custom elements are definitely the highlight.",
+    "The pair came together well, though I think the finishing could be a little cleaner.",
+    "I like the concept and the execution is mostly on point.",
+    "These have a really nice look on foot. I would make only a few small changes.",
+    "The custom design makes the shoes feel much more interesting than the stock version.",
+    "Overall a strong pair. I just think a little more attention to the tiny details would help.",
+    "The artwork looks good and the colors are balanced nicely.",
+    "I am satisfied with how these turned out. They have a distinct custom feel.",
+    "These are clean enough for everyday wear and still have something different about them.",
+    "The main design is really good. I just noticed a couple details I would polish.",
+    "Good-looking pair with a cool concept. The final result is close to what I expected.",
+    "I like the way the theme carries across the shoes. Some edges could be a little cleaner.",
+    "The custom touches are what make these work for me.",
+    "These came out better than I expected overall, with just a few minor things to improve.",
+    "The pair has a strong finished look and the details are easy to notice.",
+    "I would consider another custom. I would just change a couple things on the next one.",
+    "Really nice design and a good overall finish. The small issues are easy to overlook.",
+    "The shoes look great from a normal distance. I would refine a few areas up close.",
+    "I like the personality of this pair. The design is definitely not generic.",
+    "The final colors work better together than I expected.",
+    "Solid custom pair. The artwork is the part that stands out most to me.",
+    "I am glad I ordered these. A little more refinement would make them even better.",
+    "The overall look is clean and the custom work gives them a different feel.",
+    "These are easy to wear and still get attention. I am happy with the purchase.",
+    "The concept is strong and the finished pair looks good on foot.",
+    "I like these a lot. I just think a couple of the smaller details could be more precise.",
+    "The design has a nice balance and does not feel overly busy.",
+    "Good pair overall. The main artwork came through really well.",
+    "The shoes have a distinctive look and the custom work is nicely done.",
+    "I am mostly satisfied with the final result. There is a little room for polish.",
+    "The finished pair has a lot going for it, especially the colors and theme.",
+    "These are definitely worth checking out if you like custom designs.",
+    "The pair looks clean and the artwork gives it plenty of character.",
+    "I like the finished look and would be interested in another design.",
+    "Overall, these turned out well. I just expected slightly more refinement in a few spots."
+];
+
+const threeStarReviews = [
+    "The concept is cool, but I expected the smaller custom details to be more developed.",
+    "I like the overall idea, although the final finish was not quite what I pictured.",
+    "The shoes look good from a distance, but some details could be cleaner up close.",
+    "I like the theme, but I wanted a little more detail throughout the custom work.",
+    "The design has potential. I just think the execution needs another pass.",
+    "These are unique, but the finished pair did not fully match my expectations.",
+    "I like the color direction, although a few parts of the artwork feel unfinished.",
+    "The main idea works well, but I would have liked more attention on the smaller areas.",
+    "The shoes are nice overall. I just expected the custom treatment to go a little further.",
+    "There is a good concept here, but the final details could be more polished.",
+    "I like the style, but the pair feels slightly less detailed than I expected.",
+    "The finished shoes are decent. I would improve the precision of a few custom elements.",
+    "The overall look is interesting, though some of the artwork could be cleaner.",
+    "I like what the design is trying to do. The execution just needs a little more refinement.",
+    "These have a cool identity, but the final result was not exactly what I had pictured.",
+    "The pair looks fine on foot, but I wanted more detail from the custom work.",
+    "The concept caught my attention, but the finished version could use some polishing.",
+    "I like the direction of the design. A few areas keep it from feeling fully finished.",
+    "The shoes are definitely different, but I would make several small changes.",
+    "The main artwork looks good, but the supporting details could be stronger.",
+    "I think these could be really good with a little more attention to the finish.",
+    "The overall pair is decent, although the details are not as crisp as I hoped.",
+    "I like the idea behind the custom. I just expected a more detailed final product.",
+    "The colors work, but some of the design elements could be executed more cleanly.",
+    "The shoes have a nice concept, but the final result feels a little underdeveloped.",
+    "I appreciate the creativity. I just think the smaller details need more work.",
+    "The pair is wearable and unique, but it did not completely meet my expectations.",
+    "The design looks better from farther away than it does when you inspect the details.",
+    "I like the overall style, though the finish could definitely be more polished.",
+    "The concept is probably my favorite part. The execution could be tighter.",
+    "These are interesting, but I would make a few changes if I ordered another pair.",
+    "The custom idea is good. I just wanted the final artwork to have more depth.",
+    "The shoes have potential, but some of the smaller areas look a little rough.",
+    "I like the overall direction, but the finished pair feels like it could use another pass.",
+    "The main design works, although the details do not feel as clean as I expected.",
+    "These are different from a normal pair, which I like, but the finish could be better.",
+    "The pair is okay overall. I just wanted the custom work to feel more substantial.",
+    "I like the theme and the color choices, but some details could be sharper.",
+    "The final look is decent, though it falls a little short of what I imagined.",
+    "The design is creative, but the execution is what kept this from being a higher rating.",
+    "These are cool in concept. I would spend more time refining the smaller elements.",
+    "The shoes look good enough, but the custom details could have been more consistent.",
+    "I like the personality of the pair, even though the finish needs some improvement.",
+    "The main idea is strong. I just wanted a cleaner final execution.",
+    "These have a unique look, but I noticed several areas that could use more attention.",
+    "I think the pair could be much stronger with more precise detailing.",
+    "The overall design is interesting. The final product just did not fully live up to the idea.",
+    "I like the concept and would consider another version if the finishing were more refined.",
+    "The shoes are not bad, but I expected a little more from the custom work."
+];
+
+const dates = [
+
+    "Aug 28, 2026",
+    "Aug 24, 2026",
+    "Aug 19, 2026",
+    "Aug 14, 2026",
+    "Aug 9, 2026",
+    "Aug 3, 2026",
+    "Jul 29, 2026",
+    "Jul 24, 2026",
+    "Jul 18, 2026",
+    "Jul 12, 2026",
+    "Jul 7, 2026",
+    "Jun 30, 2026"
+
+];
+
+
+/* =========================================================
+   CREATE 100 REVIEWS
+   ========================================================= */
+
+    const reviews = [];
+
+    /*
+       634 total reviews
+       508 = 5 stars
+       95  = 4 stars
+       31  = 3 stars
+    */
+
+    const reviewPlans = [
+        { rating: 5, count: 508, texts: fiveStarReviews },
+        { rating: 4, count: 95, texts: fourStarReviews },
+        { rating: 3, count: 31, texts: threeStarReviews }
+    ];
+
+    let reviewIndex = 0;
+
+    reviewPlans.forEach(plan => {
+        for (let i = 0; i < plan.count; i++) {
+            const uniqueText = buildUniqueReview(
+                plan.texts[i % plan.texts.length],
+                reviewIndex,
+                plan.rating
+            );
+
+            reviews.push({
+                name: names[reviewIndex % names.length],
+                rating: plan.rating,
+                product: products[reviewIndex % products.length],
+                date: dates[reviewIndex % dates.length],
+                text: uniqueText
+            });
+
+            reviewIndex++;
+        }
+    });
+
+
+/* =========================================================
+   STAR FUNCTION
+   ========================================================= */
+
+function getStars(rating) {
+
+    let result = "";
+
+    for (let i = 1; i <= 5; i++) {
+
+        if (i <= rating) {
+
+            result += "★";
+
+        } else {
+
+            result += "☆";
+
+        }
+
+    }
+
+    return result;
+
+}
+
+
+/* =========================================================
+   GET INITIALS
+   ========================================================= */
+
+function getInitials(name) {
+
+    return name
+        .replace(".", "")
+        .split(" ")
+        .map(word => word.charAt(0))
+        .slice(0, 2)
+        .join("")
+        .toUpperCase();
+
+}
+
+
+/* =========================================================
+   CALCULATE AVERAGE
+   ========================================================= */
+
+function calculateAverage() {
+
+    let total = 0;
+
+    reviews.forEach(review => {
+
+        total += review.rating;
+
+    });
+
+    return total / reviews.length;
+
+}
+
+
+/* =========================================================
+   UPDATE MAIN RATING
+   ========================================================= */
+
+function updateMainRating() {
+
+    const average = calculateAverage();
+
+    document.getElementById("averageRating").textContent =
+        average.toFixed(1);
+
+    document.getElementById("ratingCount").textContent =
+        reviews.length;
+
+    document.getElementById("averageStars").textContent =
+        "★★★★★";
+
+}
+
+
+/* =========================================================
+   CREATE RATING BREAKDOWN
+   ========================================================= */
+
+function createBreakdown() {
+
+    const breakdown =
+        document.getElementById("ratingBreakdown");
+
+    const counts = {
+
+        5: 0,
+        4: 0,
+        3: 0,
+        2: 0,
+        1: 0
+
+    };
+
+
+    reviews.forEach(review => {
+
+        counts[review.rating]++;
+
+    });
+
+
+    breakdown.innerHTML = "";
+
+
+    for (let rating = 5; rating >= 1; rating--) {
+
+        const percentage =
+            (counts[rating] / reviews.length) * 100;
+
+
+        const row =
+            document.createElement("div");
+
+        row.className = "bar-row";
+
+
+        row.innerHTML = `
+
+            <span>${rating}</span>
+
+            <div class="rating-bar">
+
+                <div
+                    class="rating-fill"
+                    style="width:${percentage}%">
+                </div>
+
+            </div>
+
+            <span>${counts[rating]}</span>
+
+        `;
+
+
+        breakdown.appendChild(row);
+
+    }
+
+}
+
+
+/* =========================================================
+   CREATE REVIEW CARD
+   ========================================================= */
+
+function createReviewCard(review) {
+
+    const card =
+        document.createElement("article");
+
+    card.className = "review-card";
+
+
+    card.innerHTML = `
+
+        <div class="review-top">
+
+            <div class="person">
+
+                <div class="avatar">
+                    ${getInitials(review.name)}
+                </div>
+
+                <div>
+
+                    <div class="name">
+                        ${review.name}
+                    </div>
+
+                    <div class="customer-label">
+                        Customer Review
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="review-date">
+                ${review.date}
+            </div>
+
+        </div>
+
+
+        <div
+            class="review-stars"
+            aria-label="${review.rating} out of 5 stars">
+
+            ${getStars(review.rating)}
+
+        </div>
+
+
+        <p class="review-text">
+            ${review.text}
+        </p>
+
+
+        <span class="product-tag">
+            ${review.product}
+        </span>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =========================================================
+   DISPLAY REVIEWS
+   ========================================================= */
+
+function displayReviews(filter = "all") {
+
+    const grid =
+        document.getElementById("reviewGrid");
+
+
+    grid.innerHTML = "";
+
+
+    let filteredReviews;
+
+
+    if (filter === "all") {
+
+        filteredReviews = [...reviews];
+
+    } else {
+
+        filteredReviews =
+            reviews.filter(
+                review =>
+                    review.rating === Number(filter)
+            );
+
+    }
+
+    const sort = document.getElementById("sortReviews")?.value || "newest";
+
+    if (sort === "highest") {
+        filteredReviews.sort((a, b) => b.rating - a.rating);
+    } else if (sort === "lowest") {
+        filteredReviews.sort((a, b) => a.rating - b.rating);
+    }
+
+
+    if (filteredReviews.length === 0) {
+
+        grid.innerHTML = `
+
+            <div class="empty-reviews">
+
+                No reviews found for this rating.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    filteredReviews.forEach(review => {
+
+        grid.appendChild(
+            createReviewCard(review)
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   FILTER BUTTONS
+   ========================================================= */
+
+const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", function() {
+
+
+        filterButtons.forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+        this.classList.add("active");
+
+
+        const rating =
+            this.getAttribute("data-rating");
+
+
+        displayReviews(rating);
+
+    });
+
+});
+
+
+/* =========================================================
+   START EVERYTHING
+   ========================================================= */
+
+updateMainRating();
+
+createBreakdown();
+
+displayReviews("all");
+
+
+/* =========================================================
+   CONSOLE CHECK
+   ========================================================= */
+
+console.log(
+    "AJDidThese Reviews Loaded:",
+    reviews.length
+);
+
+console.log(
+    "Average Rating:",
+    calculateAverage().toFixed(1)
+);
+
+</script>
+
+</body>
+</html>
